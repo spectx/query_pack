@@ -1,4 +1,4 @@
-@[./view/view_access.sx]
+@[./view/view_default.sx]
 | select(time_slot:timestamp[1 hour], total:count(*), fails:count(response >= 400))
 | group(@1)
 

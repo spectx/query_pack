@@ -1,4 +1,4 @@
-@[./view/view_access.sx]
+@[./view/view_default.sx]
 | select(count(*), PARSEURI(referrer)[host])
 | group(host)
 | sort(count desc)

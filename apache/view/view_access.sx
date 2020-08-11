@@ -1,3 +1,0 @@
-// @[view_access_path_time.sx](from:now()[-2 day], to:now());
-
-@[./view_access_1file.sx]

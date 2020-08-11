@@ -1,4 +1,4 @@
-@[./view/view_access.sx]
+@[./view/view_default.sx]
 | filter(response = 200)
 | select(first_seen:min(timestamp), uri)
 | group(uri)

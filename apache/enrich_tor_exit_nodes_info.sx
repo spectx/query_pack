@@ -8,6 +8,6 @@ $torPattern = "
 ";
 @torNodes=PARSE(pattern:$torPattern, src:'https://check.torproject.org/exit-addresses');
 
-@[./view/view_access.sx]
+@[./view/view_default.sx]
 | leftjoin(@torNodes ON left.clientIp = right.tor_ip)
 | filter(tor_ip is not null)

@@ -1,4 +1,4 @@
-@[./view/view_access.sx]
+@[./view/view_default.sx]
 // aggregate down to 1 record for every IP and unique Hour
 | select(time_slot_hour:timestamp[1 hour], clientIp, hits:count(*))
 | group(time_slot_hour, clientIp)

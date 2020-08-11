@@ -1,4 +1,4 @@
-@[./view/view_access.sx]
+@[./view/view_default.sx]
 | select(asn(clientIp), *)
 | filter_out(asn = 15169 and agent like '%Googlebot/%')
 | filter_out(asn = 8075 and agent like '%BingPreview/%')

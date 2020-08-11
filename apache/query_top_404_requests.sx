@@ -1,4 +1,4 @@
-@[./view/view_access.sx]
+@[./view/view_default.sx]
 | filter(response = 404)
 | select(count(*), uri)
 | group(uri)

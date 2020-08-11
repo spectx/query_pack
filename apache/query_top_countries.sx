@@ -1,4 +1,4 @@
-@[./view/view_access.sx]
+@[./view/view_default.sx]
 | select(count(*), cc(clientIp))
 | group(cc)
 | sort(count desc)

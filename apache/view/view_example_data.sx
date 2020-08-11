@@ -1,0 +1,2 @@
+LIST('s3s://spectx-docs/formats/log/apache/apache_access.log.sx.gz')
+| parse(pattern:$[./apache_access_log.sxp])
