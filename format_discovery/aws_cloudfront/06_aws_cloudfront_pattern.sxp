@@ -1,0 +1,46 @@
+/*
+SpectX format discovery flow:
+https://github.com/spectx/query_pack/tree/master/format_discovery/aws_cloudfront
+
+CloudFront logs documentation:
+https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/AccessLogs.html#BasicDistributionFileFormat
+
+SQL style name mapping from:
+https://docs.aws.amazon.com/athena/latest/ug/cloudfront-logs.html
+*/
+
+(BOS '#Version: 1.0\n' LD '\n')? // Verify version and skip header lines.
+(
+  TIMESTAMP('yyyy-MM-dd\tHH:mm:ss', tz='GMT'):timestamp // '01_date' and '02_time' merged
+  LD:location                          // '03_x-edge-location'
+  LONG:bytes                           // '04_sc-bytes'
+  IPADDR:request_ip                    // '05_c-ip'
+  LD:method                            // '06_cs-method'
+  LD:host                              // '07_cs(Host)'
+  LD:uri                               // '08_cs-uri-stem'
+  INTEGER:status                       // '09_sc-status'
+  ('-' | LD{1,65536}:referrer)         // '10_cs(Referer)'
+  ('-' | LD{1,65536}:user_agent)       // '11_cs(User-Agent)'
+  ('-' | LD{1,65536}:query_string)     // '12_cs-uri-query'
+  ('-' | LD{1,65536}:cookie)           // '13_cs(Cookie)'
+  LD:result_type                       // '14_x-edge-result-type'
+  LD:request_id                        // '15_x-edge-request-id'
+  LD:host_header                       // '16_x-host-header'
+  LD:request_protocol                  // '17_cs-protocol'
+  LONG:request_bytes                   // '18_cs-bytes'
+  FLOAT:time_taken                     // '19_time-taken'
+  ('-' | LD:xforwarded_for)            // '20_x-forwarded-for'
+  ('-' | LD:ssl_protocol)              // '21_ssl-protocol'
+  ('-' | LD:ssl_cipher)                // '22_ssl-cipher'
+  LD:response_result_type              // '23_x-edge-response-result-type'
+  LD:http_version                      // '24_cs-protocol-version'
+  ('-' | LD:fle_status)                // '25_fle-status'           // STRING<NO SAMPLES>, doc: STRING
+  ('-' | INTEGER:fle_encrypted_fields) // '26_fle-encrypted-fields' // STRING<NO SAMPLES>, doc: INTEGER
+  INT:c_port                           // '27_c-port'
+  FLOAT:time_to_first_byte             // '28_time-to-first-byte'
+  LD:x_edge_detailed_result_type       // '29_x-edge-detailed-result-type'
+  ('-' | LD:sc_content_type)           // '30_sc-content-type'
+  ('-' | LONG:sc_content_len)          // '31_sc-content-len'
+  ('-' | LONG:sc_range_start)          // '32_sc-range-start'
+  ('-' | LONG:sc_range_end)            // '33_sc-range-end'
+)(fs='\t') EOL

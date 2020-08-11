@@ -1,0 +1,9 @@
+$pattern = $[./06_aws_cloudfront_pattern.sxp];
+
+LIST('s3s://my_s3_bucket/cloudfront/***********************/*')
+// | limit(100) // test with first 100 blobs
+| parse(pattern:$pattern)
+| select(_uri, _unmatched)
+| filter(_unmatched is not null)
+
+// All clear, 0 unmatched, 0 records returned.

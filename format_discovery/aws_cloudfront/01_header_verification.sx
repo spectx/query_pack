@@ -1,0 +1,21 @@
+/*
+  Here I will parse header and all the other records as lines with maximum len 65000.
+  After execution:
+    a) check that unmatched bytes is 0
+	// SUCCEEDED parser(634590251 bytes, 0 unmatched, 0.00%) RESULT: 1,502,566 rows (819MB) disk write: 836MB net read: 9736B duration: 43.281
+	b) Query log tab has no errors.
+  If a and b are successfull then I keep this tab open and use Follow button for next steps.
+*/
+
+$pattern = <<<PATTERN
+  (BOS '#Version: 1.0\n' LD:fields EOL)?
+  LD{0,65000}:line EOL
+PATTERN;
+
+LIST('s3s://my_s3_bucket/cloudfront/******************/*')
+// | filter(random() < 0.05) // optional sampling
+// | limit(10)
+| parse(pattern:$pattern)
+| select(_uri, _last_modified, _raw_offset, *)
+
+

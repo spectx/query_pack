@@ -1,0 +1,23 @@
+/*
+
+documentation: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/AccessLogs.html#BasicDistributionFileFormat
+known fields fro 75529 blobs.
+
+#Fields: date time x-edge-location sc-bytes c-ip cs-method cs(Host) cs-uri-stem sc-status cs(Referer) cs(User-Agent) cs-uri-query cs(Cookie) x-edge-result-type x-edge-request-id x-host-header cs-protocol cs-bytes time-taken x-forwarded-for ssl-protocol ssl-cipher x-edge-response-result-type cs-protocol-version fle-status fle-encrypted-fields c-port time-to-first-byte x-edge-detailed-result-type sc-content-type sc-content-len sc-range-start sc-range-end
+
+a) Input Data Browser -> to s3s://my_s3_bucket/cloudfront/xxxxx/YYYYYYYYYYYYY.2020-03-11-04.b4d79e31.gz
+b) Prepare pattern.
+c) Save as 03_extract_fields_as_strings.sxp
+d) create first simple pattern based on sample data, documentation and column names from header.
+e) run this query
+   check - 0 unmatched and no warnings in Query log
+f) continue (Follow) in discovery_step4.sx (keep this tab open)   
+*/
+
+$pattern = $[./03_extract_fields_as_strings.sxp];
+
+LIST('s3s://my_s3_bucket/cloudfront/***********************/*')
+//| filter(random() < 0.05) optional sampling
+| parse(pattern:$pattern)
+| select(_file_name, *)
+

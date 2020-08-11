@@ -1,0 +1,39 @@
+Result of 04_type_detection.sx (select rows and press ctrl+p for text exports)
++--------------------------------+------------------------------+---------+--------------+---------+------------+-----------+-----------+
+| field                          | type                         |     cnt | isHyphenNull | isEmpty | isMinusOne | minStrLen | maxStrLen |
++================================+==============================+=========+==============+=========+============+===========+===========+
+| 01_date                        | STRING                       | 1505061 |            0 |       0 |          0 |        10 |        10 |
+| 02_time                        | STRING                       | 1505061 |            0 |       0 |          0 |         8 |         8 |
+| 03_x-edge-location             | STRING                       | 1505061 |            0 |       0 |          0 |         5 |         8 |
+| 04_sc-bytes                    | LONG{min:0, max:1298158}     | 1505061 |            0 |       0 |          0 |         1 |         7 |
+| 05_c-ip                        | IPADDR                       | 1505061 |            0 |       0 |          0 |         8 |        39 |
+| 06_cs-method                   | STRING                       | 1505061 |            0 |       0 |          0 |         3 |         7 |
+| 07_cs(Host)                    | STRING                       | 1505061 |            0 |       0 |          0 |        28 |        29 |
+| 08_cs-uri-stem                 | STRING                       | 1505061 |            0 |       0 |          0 |         1 |       198 |
+| 09_sc-status                   | INTEGER{min:0, max:504}      | 1505061 |            0 |       0 |          0 |         3 |         3 |
+| 10_cs(Referer)                 | STRING                       | 1505061 |      1042667 |       0 |          0 |         1 |      2679 |
+| 11_cs(User-Agent)              | STRING                       | 1505061 |         5229 |       0 |          0 |         1 |       357 |
+| 12_cs-uri-query                | STRING                       | 1505061 |      1223501 |       0 |          0 |         1 |      3319 |
+| 13_cs(Cookie)                  | STRING                       | 1505061 |      1289933 |       0 |          0 |         1 |      1960 |
+| 14_x-edge-result-type          | STRING                       | 1505061 |            0 |       0 |          0 |         3 |        10 |
+| 15_x-edge-request-id           | STRING                       | 1505061 |            0 |       0 |          0 |        56 |        56 |
+| 16_x-host-header               | STRING                       | 1505061 |            0 |       0 |          0 |        10 |        29 |
+| 17_cs-protocol                 | STRING                       | 1505061 |            0 |       0 |          0 |         3 |         5 |
+| 18_cs-bytes                    | LONG{min:13, max:6747742}    | 1505061 |            0 |       0 |          0 |         2 |         7 |
+| 19_time-taken                  | DOUBLE{min:0.0, max:452.545} | 1505061 |            0 |       0 |          0 |         5 |         7 |
+| 20_x-forwarded-for             | STRING                       | 1505061 |      1493600 |       0 |          0 |         1 |        83 |
+| 21_ssl-protocol                | STRING                       | 1505061 |       244133 |       0 |          0 |         1 |         7 |
+| 22_ssl-cipher                  | STRING                       | 1505061 |       244133 |       0 |          0 |         1 |        27 |
+| 23_x-edge-response-result-type | STRING                       | 1505061 |            0 |       0 |          0 |         3 |        10 |
+| 24_cs-protocol-version         | STRING                       | 1505061 |            0 |       0 |          0 |         8 |         8 |
+| 25_fle-status                  | STRING<NO SAMPLES>           | 1505061 |      1505061 |       0 |          0 |         1 |         1 |
+| 26_fle-encrypted-fields        | STRING<NO SAMPLES>           | 1505061 |      1505061 |       0 |          0 |         1 |         1 |
+| 27_c-port                      | INTEGER{min:692, max:65534}  | 1505061 |            0 |       0 |          0 |         3 |         5 |
+| 28_time-to-first-byte          | DOUBLE{min:0.0, max:69.327}  | 1505061 |            0 |       0 |          0 |         5 |         6 |
+| 29_x-edge-detailed-result-type | STRING                       | 1505061 |            0 |       0 |          0 |         3 |        29 |
+| 30_sc-content-type             | STRING                       | 1505061 |        95952 |       0 |          0 |         1 |        36 |
+| 31_sc-content-len              | LONG{min:0, max:1295187}     | 1505061 |       565008 |       0 |          0 |         1 |         7 |
+| 32_sc-range-start              | LONG{min:0, max:173272}      | 1505061 |      1501672 |       0 |          0 |         1 |         6 |
+| 33_sc-range-end                | LONG{min:0, max:1295186}     | 1505061 |      1501672 |       0 |          0 |         1 |         7 |
++--------------------------------+------------------------------+---------+--------------+---------+------------+-----------+-----------+
+

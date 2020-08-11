@@ -1,0 +1,41 @@
+/*
+https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/AccessLogs.html#BasicDistributionFileFormat
+
+#Fields: date time x-edge-location sc-bytes c-ip cs-method cs(Host) cs-uri-stem sc-status cs(Referer) cs(User-Agent) cs-uri-query cs(Cookie) x-edge-result-type x-edge-request-id x-host-header cs-protocol cs-bytes time-taken x-forwarded-for ssl-protocol ssl-cipher x-edge-response-result-type cs-protocol-version fle-status fle-encrypted-fields c-port time-to-first-byte x-edge-detailed-result-type sc-content-type sc-content-len sc-range-start sc-range-end
+*/
+(BOS '#Version: 1.0\n' LD '\n')? // Skip header.
+(
+  LD{0,65536}:'01_date'
+  LD{0,65536}:'02_time'
+  LD{0,65536}:'03_x-edge-location'
+  LD{0,65536}:'04_sc-bytes'
+  LD{0,65536}:'05_c-ip'
+  LD{0,65536}:'06_cs-method'
+  LD{0,65536}:'07_cs(Host)'
+  LD{0,65536}:'08_cs-uri-stem'
+  LD{0,65536}:'09_sc-status'
+  LD{0,65536}:'10_cs(Referer)'
+  LD{0,65536}:'11_cs(User-Agent)'
+  LD{0,65536}:'12_cs-uri-query'
+  LD{0,65536}:'13_cs(Cookie)'
+  LD{0,65536}:'14_x-edge-result-type'
+  LD{0,65536}:'15_x-edge-request-id'
+  LD{0,65536}:'16_x-host-header'
+  LD{0,65536}:'17_cs-protocol'
+  LD{0,65536}:'18_cs-bytes'
+  LD{0,65536}:'19_time-taken'
+  LD{0,65536}:'20_x-forwarded-for'
+  LD{0,65536}:'21_ssl-protocol'
+  LD{0,65536}:'22_ssl-cipher'
+  LD{0,65536}:'23_x-edge-response-result-type'
+  LD{0,65536}:'24_cs-protocol-version'
+  LD{0,65536}:'25_fle-status'
+  LD{0,65536}:'26_fle-encrypted-fields'
+  LD{0,65536}:'27_c-port'
+  LD{0,65536}:'28_time-to-first-byte'
+  LD{0,65536}:'29_x-edge-detailed-result-type'
+  LD{0,65536}:'30_sc-content-type'
+  LD{0,65536}:'31_sc-content-len'
+  LD{0,65536}:'32_sc-range-start'
+  LD{0,65536}:'33_sc-range-end'
+)(fs='\t') EOL
