@@ -9,7 +9,3 @@ $torPattern = "
 
 PARSE(pattern:$torPattern, src:'https://check.torproject.org/exit-addresses')
 | select(tor_ip, tor_time, tor_id)
-
-
-
-
