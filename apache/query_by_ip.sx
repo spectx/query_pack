@@ -1,0 +1,2 @@
+@[./view/view_access.sx]
+| filter(clientIp = 28.29.194.203)

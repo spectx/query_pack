@@ -1,0 +1,4 @@
+@[./view/view_access.sx]
+| select(timestamp, clientIp, verb, bytes, uri, *)
+| sort(bytes desc)
+| limit(50)

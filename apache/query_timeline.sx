@@ -1,0 +1,5 @@
+@[./view/view_access.sx]
+| select(time_slot:timestamp[1 hour], total:count(*), fails:count(response >= 400))
+| group(@1)
+
+// press Chart after execute

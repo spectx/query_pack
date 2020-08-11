@@ -1,0 +1,4 @@
+@[./view/view_access.sx]
+| select(count(*), referrer)
+| group(referrer)
+| sort(count desc)

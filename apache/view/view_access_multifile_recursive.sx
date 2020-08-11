@@ -1,0 +1,6 @@
+LIST([
+  'file:/data/logs/web/************/access*',
+  'file:/data/logs2/internal/**********/*.log',
+  'file:/data/logs3/public/web/access*https*'
+])
+| parse(pattern:$[./apache_access_log.sxp])

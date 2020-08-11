@@ -1,0 +1,10 @@
+@[./view/view_access.sx]
+// aggregate down to 1 record for every IP and unique Hour
+| select(time_slot_hour:timestamp[1 hour], clientIp, hits:count(*))
+| group(time_slot_hour, clientIp)
+
+// aggregate down to every IP and day. Field hours = number of unique hours IP has been active.
+| select(time_slot_day:time_slot_hour[1 day], clientIp, hours:count(*), hits:sum_long(hits))
+| group(time_slot_day, clientIp)
+| sort(hours DESC)
+| filter(hours > 20)

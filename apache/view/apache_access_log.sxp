@@ -1,0 +1,6 @@
+(IPADDR:clientIp | [! \n]+):host
+' ' ('-' | NSPACE:ident)      // Keep ' [' TIMESTAMP in sequence to catch apache log poisoning
+' ' ('-' | DATA{1,8096}:auth) (' [' TIMESTAMP('dd/MMM/yyyy:HH:mm:ss Z'):timestamp ']')
+' ' (('\"' [A-Z-_]+:verb ' ' LD{0,8096}:uri ' HTTP/' FLOAT:httpversion '\"') | DQS{0,100000}:invalidRequest)
+' ' INTEGER:response ' ' (LONG:bytes | '-') (' ' DQS:referrer (' ' DQS:agent (' ' DQS:extra)?)?)?
+EOL

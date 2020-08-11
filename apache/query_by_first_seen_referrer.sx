@@ -1,0 +1,6 @@
+@[./view/view_access.sx]
+| filter(response = 200)
+| select(first_seen:min(timestamp), last_seen:max(timestamp), count(*), host:PARSEURI(referrer)[host])
+| group(host)
+| sort(first_seen desc)
+| select(first_seen_ago:duration(now()-first_seen), *)
