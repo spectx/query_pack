@@ -3,7 +3,9 @@ https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/AccessLogs.ht
 
 #Fields: date time x-edge-location sc-bytes c-ip cs-method cs(Host) cs-uri-stem sc-status cs(Referer) cs(User-Agent) cs-uri-query cs(Cookie) x-edge-result-type x-edge-request-id x-host-header cs-protocol cs-bytes time-taken x-forwarded-for ssl-protocol ssl-cipher x-edge-response-result-type cs-protocol-version fle-status fle-encrypted-fields c-port time-to-first-byte x-edge-detailed-result-type sc-content-type sc-content-len sc-range-start sc-range-end
 */
-(BOS '#Version: 1.0\n' LD '\n')? // Skip header.
+
+// Verify version and skip header lines.
+(BOS '#Version: 1.0\n#Fields: date time x-edge-location sc-bytes ' LD EOL)?
 (
   LD{0,65536}:'01_date'
   LD{0,65536}:'02_time'

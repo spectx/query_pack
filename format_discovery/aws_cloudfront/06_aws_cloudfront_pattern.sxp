@@ -9,7 +9,8 @@ SQL style name mapping from:
 https://docs.aws.amazon.com/athena/latest/ug/cloudfront-logs.html
 */
 
-(BOS '#Version: 1.0\n' LD '\n')? // Verify version and skip header lines.
+// Verify version and skip header lines.
+(BOS '#Version: 1.0\n#Fields: date time x-edge-location sc-bytes ' LD EOL)?
 (
   TIMESTAMP('yyyy-MM-dd\tHH:mm:ss', tz='GMT'):timestamp // '01_date' and '02_time' merged
   LD:location                          // '03_x-edge-location'
