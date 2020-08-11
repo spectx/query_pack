@@ -7,5 +7,3 @@ LIST('sas://remote/logs/apache/****************/*access.log')
 | filter(last_modified >= $from[-1 day] AND last_modified <= $to)
 | parse(pattern:$[./apache_access_log.sxp])
 | filter(timestamp >= $from AND timestamp <= $to)
-
-

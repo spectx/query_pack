@@ -1,6 +1,2 @@
-// MaxMind must be configured!!!
-// https://docs.spectx.com/v2/spectx_core/getting_started/installing_desktop/maxmind_config.html
-
 @[./view/view_default.sx]
 | select(clientIp, cc(clientIp), asname(clientIp), geo(clientIp), *)
-

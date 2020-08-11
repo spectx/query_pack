@@ -7,4 +7,3 @@ LIST('sas://remote/logs/apache/$yyyy$/$MM$/$dd$/$yyyy$-$MM$-$dd$_*access.log')
 | filter(path_time >= $from[-1 day] AND path_time <= $to)
 | parse(pattern:$[./apache_access_log.sxp])
 | filter(timestamp >= $from AND timestamp <= $to)
-
