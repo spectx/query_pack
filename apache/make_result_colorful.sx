@@ -1,2 +1,4 @@
+// https://docs.spectx.com/v2/spectx_core/web_user_interface/visualization_wui.html#resultset-coloring
+
 @[./view/view_default.sx]
 | select(_rowcolor: if(uri like '%chmod+%', 'red', if(uri like '%wp-login%', 'green')), *)
