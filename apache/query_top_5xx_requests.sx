@@ -3,3 +3,4 @@
 | select(count(*), uri)
 | group(uri)
 | sort(count desc)
+| select(*, clientIp, referrer, response, _file_name, _raw_offset)

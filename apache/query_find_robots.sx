@@ -4,7 +4,6 @@
 | group(time_slot_hour, clientIp)
 
 // aggregate down to every IP and day. Field hours = number of unique hours IP has been active.
-| select(time_slot_day:time_slot_hour[1 day], clientIp, hours:count(*), hits:sum_long(hits))
+| select(time_slot_day:time_slot_hour[1 day], clientIp, active_hours:count(*), hits_per_day:sum_long(hits))
 | group(time_slot_day, clientIp)
-| sort(hours DESC)
-| filter(hours > 20)
+| filter(active_hours > 20)

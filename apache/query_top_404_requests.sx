@@ -1,6 +1,6 @@
 @[./view/view_default.sx]
 | filter_out(uri = "/robots.txt")
 | filter(response = 404)
-| select(count(*), uri)
+| select(count(*), uri, FIRST(clientIp), min(timestamp), max(timestamp))
 | group(uri)
 | sort(count desc)

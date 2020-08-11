@@ -1,0 +1,2 @@
+@[./view/view_default.sx]
+| select(_rowcolor: if(uri like '%chmod+%', 'red', if(uri like '%wp-login%', 'green')), *)
