@@ -1,3 +1,2 @@
 @[./view/view_default.sx]
-| filter(clientIp in 28.29.194.0/24)
-
+| filter(clientIp in 162.243.128.0/24)

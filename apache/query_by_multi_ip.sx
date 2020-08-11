@@ -1,3 +1,2 @@
 @[./view/view_default.sx]
-| filter(clientIp = 28.29.194.203 OR clientIp = 28.29.192.203 or clientIp = 28.49.194.203)
-
+| filter(clientIp = 222.242.147.26 OR clientIp = 188.27.27.113 or clientIp = 32.140.206.210)

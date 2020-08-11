@@ -2,3 +2,4 @@
 | select(count(*), clientNet:IP_TRUNC(clientIp, 24))
 | group(clientNet)
 | sort(count desc)
+| select(*, ASNAME(clientNet))

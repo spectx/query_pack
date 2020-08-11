@@ -1,4 +1,4 @@
 // @[view_indexed_by_pathtime.sx](from:now()[-2 day], to:now());
 // @[view_single_file.sx]
 
-@[./view_example_data]
+@[./view_example_data.sx]
