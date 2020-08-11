@@ -1,6 +1,9 @@
+$toNet(ip,mask)=ipnet(ip_trunc($ip, $mask), $mask);
+
 @[./view_cached.sx]
-| select(ipnet(IP_TRUNC(tor_ip, 24), 24), *)
-| select(ipnet, count(*), ARRAY_AGG(tor_ip))
-| group(ipnet)
+| sort(tor_ip)
+| select(net:$toNet(tor_ip, 24), *)
+| select(net, count(*), ARRAY_AGG(tor_ip))
+| group(net)
 | sort(count desc)
-| select(cc(ipnet), asname(ipnet), *)
+| select(cc(net), asname(net), *)
