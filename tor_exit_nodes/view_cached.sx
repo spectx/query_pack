@@ -1,4 +1,4 @@
-// expire after 4 times per hour @ minute 00, 15, 30 and 45.
+// expire 4 times per hour @ minute 00, 15, 30 and 45.
 @trigger=
   dual(1)
   | select(now()[15 min])
