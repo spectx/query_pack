@@ -1,7 +1,8 @@
 $big_ben=geo(51.500749, -0.124561);
+$max_distance_km=25;
 
 @[./view_cached.sx]
 | select(tor_ip, cc(tor_ip), asname(tor_ip), geo(tor_ip), *)
 | select(dist_from_big_ben:DISTANCE(geo, $big_ben), *)
-| filter(dist_from_big_ben < 25) // distance < 25km.
+| filter(dist_from_big_ben < $max_distance_km)
 | sort(dist_from_big_ben)
