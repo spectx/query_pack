@@ -1,0 +1,15 @@
+$torPattern = "
+  (
+	'ExitNode ' LD:tor_id EOL
+    'Published ' TIMESTAMP('yyyy-MM-dd HH:mm:ss'):tor_published EOL
+    'LastStatus ' TIMESTAMP('yyyy-MM-dd HH:mm:ss'):tor_last_status EOL
+  )?
+  'ExitAddress ' IPV4:tor_ip ' ' TIMESTAMP('yyyy-MM-dd HH:mm:ss'):tor_time EOL
+";
+
+PARSE(pattern:$torPattern, src:'https://check.torproject.org/exit-addresses')
+| select(tor_ip, tor_time, tor_id, tor_published, tor_last_status)
+
+
+
+

@@ -1,0 +1,6 @@
+@[./view_cached.sx]
+| select(ipnet(IP_TRUNC(tor_ip, 24), 24), *)
+| select(ipnet, count(*), ARRAY_AGG(tor_ip))
+| group(ipnet)
+| sort(count desc)
+| select(cc(ipnet), asname(ipnet), *)

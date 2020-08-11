@@ -1,0 +1,4 @@
+@[./view_cached.sx]
+| filter(asn(tor_ip) = 16509) // AS16509 AMAZON-02
+| select(tor_ip, cc(tor_ip), asname(tor_ip), geo(tor_ip), *)
+

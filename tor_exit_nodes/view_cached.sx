@@ -1,0 +1,4 @@
+@stream=@[./view_live.sx] | select(tor_ip, tor_time, tor_id);
+@trigger=dual(1) | select(now()[15 min]); // expire after 4 times per hour @ minute 00, 15, 30 and 45.
+
+CACHE_V1(path:'/user/cache/tor_exit_nodes.sxt', trigger:@trigger, stream:@stream)
