@@ -12,7 +12,7 @@ LIST('file:/data/logs/web/access.log')
 ....
 
 ### ./view/view_indexed_by_pathtime.sx
-```jsx
+```cs
 INIT(from:now()[-14 day], to:now());
 // from other scripts: @[/path/to/this/view/view_indexed_by_pathtime.sx](from:now()[-2 hour], to:now())
 
