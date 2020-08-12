@@ -27,3 +27,5 @@ Public query package for SpectX
 2) Join our community slack channel https://go.spectx.com/community/channel
 3) Ask help over email *support* at *spectx.com*
 
+---------
+<img src="https://docs.spectx.com/v2/_static/assets/spectx-dark-logo.svg" alt="SpectX"/>
