@@ -14,6 +14,7 @@ Public query package for SpectX
 1) Double click on '/user/query_pack-master/apache/query_hits_by_status_range.sx'
 2) Click on "**Run**" or use keyboard shortcut "**Ctrl+E**"
 3) Click on "**Chart**" or use keyboard shortcut "**Ctrl+H**"
+4) Repeat steps 1 to 3 with different scripts.
 
 ## Your demo data is boring, I need to analyze my own data!
 1) Check files in '/user/query_pack-master/apache/view/'
