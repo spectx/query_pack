@@ -28,4 +28,4 @@ Public query package for SpectX
 3) Ask help over email *support* at *spectx.com*
 
 ---------
-<img src="https://docs.spectx.com/v2/_static/assets/spectx-dark-logo.svg" alt="SpectX"/>
+<a href="https://www.spectx.com"><img src="https://docs.spectx.com/v2/_static/assets/spectx-dark-logo.svg" alt="SpectX"/></a>
