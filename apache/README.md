@@ -94,11 +94,12 @@ LIST(src:'sas://remote/logs/apache/$yyyy$/$MM$/$dd$/$yyyy$-$MM$-$dd$_*access.log
 ```jsx
 @[./view/view_default.sx]
 | select(ASN(clientIp), *)
-| filter(  agent like '%Googlebot/%'
-		or agent like 'AdsBot-Google/%'
-		or agent like '%AdsBot-Google-Mobile;%'
-		or agent like '%Google-Ads-Overview%'		
-		)
+| filter(
+     agent like '%Googlebot/%'
+  or agent like 'AdsBot-Google/%'
+  or agent like '%AdsBot-Google-Mobile;%'
+  or agent like '%Google-Ads-Overview%'
+)
 | filter_out(asn = 15169)		
 | select(asname(clientIp), geo(clientIp), cc(clientIp), agent, *)
 ```
