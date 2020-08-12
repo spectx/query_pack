@@ -106,14 +106,13 @@ LIST(src:'sas://remote/logs/apache/$yyyy$/$MM$/$dd$/$yyyy$-$MM$-$dd$_*access.log
 ### ./query_find_fake_google_bots.sx
 ```jsx
 @[./view/view_default.sx]
-| select(ASN(clientIp), *)
 | filter(
      agent like '%Googlebot/%'
   or agent like 'AdsBot-Google/%'
   or agent like '%AdsBot-Google-Mobile;%'
   or agent like '%Google-Ads-Overview%'
 )
-| filter_out(asn = 15169)		
+| filter_out(ASN(clientIp) = 15169) // AS15169 GOOGLE
 | select(asname(clientIp), geo(clientIp), cc(clientIp), agent, *)
 ```
 
