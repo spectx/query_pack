@@ -153,3 +153,6 @@ LIST(src:'sas://remote/logs/apache/$yyyy$/$MM$/$dd$/$yyyy$-$MM$-$dd$_*access.log
 | `178.165.72.177`  | `2020‑08‑12 12:51:05.000 +0300` | 3994E734DCD794479D1A60F4ABD3FC91CAA395EE | `178.165.72.177`  | 178.165.72.177  | *null* | *null* | `2020‑06‑16 00:31:12.000 +0300` | GET  | /                         |         1.1 | *null*         |      200 |   520 | ‑        | Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36 | *null* |
 | `185.220.101.203` | `2020‑08‑12 13:06:15.000 +0300` | C8F6F6C1834454F1E927A4A05E8E54EB623D4B73 | `185.220.101.203` | 185.220.101.203 | *null* | *null* | `2020‑06‑19 20:26:05.000 +0300` | GET  | /async/                   |         1.1 | *null*         |      404 |   493 | ‑        | Mozilla/5.0 (Windows ME 4.9; rv:31.0) Gecko/20100101 Firefox/31.7                                                  | *null* |
 ...
+
+---------
+<img src="https://docs.spectx.com/v2/_static/assets/spectx-dark-logo.svg" alt="SpectX"/>
