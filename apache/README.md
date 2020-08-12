@@ -94,9 +94,9 @@
 # query_top_response_len.sx
 ```jsx
 @[./view/view_default.sx]
-| leftjoin(@[../tor_exit_nodes/view_cached.sx] ON left.clientIp = right.tor_ip)
-| filter(tor_ip is not null)
-| select(tor_ip, tor_time, tor_id, *)
+| select(timestamp, clientIp, verb, bytes, uri, *)
+| sort(bytes desc)
+| limit(50)
 ```
 
 | timestamp                       | clientIp         | verb   |      bytes | uri                    | host           | ident  | auth   | httpversion | invalidRequest | response | referrer | agent                                                                        | extra  |
