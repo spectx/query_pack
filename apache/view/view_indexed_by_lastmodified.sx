@@ -4,6 +4,6 @@ INIT(from:now()[-7 day], to:now());
 //    sas://remote/logs/apache/2020/07/27/2020-07-28_https_host.site.com_access.log
 
 LIST('sas://remote/logs/apache/****************/*access.log')
-| filter(last_modified >= $from[-1 day] AND last_modified <= $to)
+| filter(last_modified BETWEEN $from[-1 day] AND $to)
 | parse(pattern:$[./apache_access_log.sxp])
-| filter(timestamp >= $from AND timestamp <= $to)
+| filter(timestamp BETWEEN $from AND $to)

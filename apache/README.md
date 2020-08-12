@@ -17,11 +17,10 @@ INIT(from:now()[-14 day], to:now());
 // from other scripts: @[/path/to/this/view/view_indexed_by_pathtime.sx](from:now()[-2 hour], to:now())
 
 LIST(src:'sas://remote/logs/apache/$yyyy$/$MM$/$dd$/$yyyy$-$MM$-$dd$_*access.log', _tz:'GMT')
-| filter_out(file_name like '%intranet_access.log')
-| filter_out(file_name like '%sports_club_access.log')
-| filter(path_time >= $from[-1 day] AND path_time <= $to)
+| filter_out(file_name like '%intranet_access.log' OR file_name like '%sports_club_access.log')
+| filter(path_time BETWEEN $from[-1 day] AND $to)
 | parse(pattern:$[./apache_access_log.sxp])
-| filter(timestamp >= $from AND timestamp <= $to)
+| filter(timestamp BETWEEN $from AND $to)
 ```
 
 | clientIp         | host           | ident  | auth   | timestamp                       | verb | uri          | httpversion | invalidRequest | response | bytes | referrer | agent       | extra  |
