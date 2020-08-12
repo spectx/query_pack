@@ -1,3 +1,2 @@
 @[./view/view_default.sx]
-// _raw_text is 1 original logline as String
 | filter(_raw_text like '%union select%')
