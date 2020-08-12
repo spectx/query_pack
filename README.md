@@ -2,7 +2,7 @@
 Public query package for SpectX
 
 ## Install
-1) In GitHub click "Code" -> "Download ZIP"
+1) Here on GitHub click green button "Code" -> "Download ZIP"
 2) Go to your SpectX (you can get it from https://www.spectx.com/get-spectx)
     * Right click on folder "user"
     * Select "Upload"
