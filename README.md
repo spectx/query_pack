@@ -2,12 +2,12 @@
 Public query package for SpectX
 
 ## Install
-1) Here on GitHub click green button "**Code**" -> "**Download ZIP**"
+1) Here on GitHub click green button "Code" -> "Download ZIP"
 2) Go to your SpectX (you can get it from https://www.spectx.com/get-spectx)
-    * Right click on folder "**user**"
-    * Select "**Upload**"
-    * Click "**Upload zip archive or single file**"
-    * Select downloaded file "**query_pack-master.zip**"
+    * Right click on folder "/user"
+    * Select "Upload"
+    * Click "Upload zip archive or single file"
+    * Select downloaded file "query_pack-master.zip"
     * Done
 
 ## Ok, but how do I use it?
@@ -24,5 +24,5 @@ Public query package for SpectX
 ## I want to experiment less and get results faster.
 1) Go to https://docs.spectx.com
 2) Join our community slack channel https://go.spectx.com/community/channel
-3) Ask help over email **support at spectx dot com**
+3) Ask help over email *support* at *spectx.com*
 
