@@ -1,9 +1,9 @@
-INIT(from:now()[-7 day], to:now());
+INIT(from:now()[-14 day], to:now());
+// from other scripts: @[/path/to/this/view/view_indexed_by_pathtime.sx](from:now()[-2 hour], to:now())
 
-// example file 1 file
-//    sas://remote/logs/apache/2020/07/27/2020-07-28_https_host.site.com_access.log
-
-LIST('sas://remote/logs/apache/$yyyy$/$MM$/$dd$/$yyyy$-$MM$-$dd$_*access.log')
+LIST(src:'sas://remote/logs/apache/$yyyy$/$MM$/$dd$/$yyyy$-$MM$-$dd$_*access.log', _tz:'GMT')
+| filter_out(file_name like '%intranet_access.log')
+| filter_out(file_name like '%sports_club_access.log')
 | filter(path_time >= $from[-1 day] AND path_time <= $to)
 | parse(pattern:$[./apache_access_log.sxp])
 | filter(timestamp >= $from AND timestamp <= $to)

@@ -14,12 +14,16 @@ LIST('file:/data/logs/web/access.log')
 ### ./view/view_indexed_by_pathtime.sx
 ```jsx
 INIT(from:now()[-14 day], to:now());
+// from other scripts: @[/path/to/this/view/view_indexed_by_pathtime.sx](from:now()[-2 hour], to:now())
 
-LIST('sas://remote/logs/apache/$yyyy$/$MM$/$dd$/$yyyy$-$MM$-$dd$_*access.log')
+LIST(src:'sas://remote/logs/apache/$yyyy$/$MM$/$dd$/$yyyy$-$MM$-$dd$_*access.log', _tz:'GMT')
+| filter_out(file_name like '%intranet_access.log')
+| filter_out(file_name like '%sports_club_access.log')
 | filter(path_time >= $from[-1 day] AND path_time <= $to)
 | parse(pattern:$[./apache_access_log.sxp])
 | filter(timestamp >= $from AND timestamp <= $to)
 ```
+
 | clientIp         | host           | ident  | auth   | timestamp                       | verb | uri          | httpversion | invalidRequest | response | bytes | referrer | agent       | extra  |
 |------------------|----------------|--------|--------|---------------------------------|------|--------------|------------:|----------------|---------:|------:|----------|-------------|--------|
 | `34.239.156.212` | 34.239.156.212 | *null* | *null* | `2020‑07‑29 17:25:01.000 +0300` | GET  | /            |         1.1 | *null*         |      200 |  2120 | ‑        | curl/7.69.1 | *null* |
