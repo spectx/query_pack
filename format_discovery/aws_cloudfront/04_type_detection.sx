@@ -3,47 +3,50 @@
 | select(unnest({*}))
 | select(field:@1[key], value:@1[value])
 //| limit(10000)
-| select(*, 
-		 isEmpty:value='', 
-		 isNullValue:value='-', // Hyphen in AWS logs = logical NULL.
-		 parse("BOOLEAN:boolean EOF", value),
-		 parse("INTEGER:integer EOF", value),
-		 parse("LONG:long EOF", value),
-		 parse("DOUBLE:double EOF", value),
-		 parse("IPADDR:ipaddr EOF", value)
-		)
-| select(field,
-		 total:count(*),
-		 withValue:count(not (isEmpty OR isNullValue)),
-		 emptyValue:count(isEmpty),
-		 nullValue:count(isNullValue),
-		 minusOne:count(value = '-1'),
-		 boolean:{cnt:count(boolean is not null), min:min(boolean), max:max(boolean)},
-		 integer:{cnt:count(integer is not null), min:min(integer), max:max(integer)},
-		 long:{cnt:count(long is not null), min:min(long), max:max(long)},
-		 double:{cnt:count(double is not null), min:min(double), max:max(double)},
-		 ipaddr:{cnt:count(ipaddr is not null), min:min(ipaddr), max:max(ipaddr)},
-		 minStrLen:min(strlen(string(value))),
-		 maxStrLen:max(strlen(string(value)))
-		)
+| select(
+    *,
+    isEmpty:value='',
+    isNullValue:value='-', // Hyphen in AWS logs = logical NULL.
+    parse("BOOLEAN:boolean EOF", value),
+    parse("INTEGER:integer EOF", value),
+    parse("LONG:long EOF", value),
+    parse("DOUBLE:double EOF", value),
+    parse("IPADDR:ipaddr EOF", value)
+)
+| select(
+    field,
+    total:count(*),
+    withValue:count(not (isEmpty OR isNullValue)),
+    emptyValue:count(isEmpty),
+    nullValue:count(isNullValue),
+    minusOne:count(value = '-1'),
+    boolean:{cnt:count(boolean is not null), min:min(boolean), max:max(boolean)},
+    integer:{cnt:count(integer is not null), min:min(integer), max:max(integer)},
+    long:{cnt:count(long is not null), min:min(long), max:max(long)},
+    double:{cnt:count(double is not null), min:min(double), max:max(double)},
+    ipaddr:{cnt:count(ipaddr is not null), min:min(ipaddr), max:max(ipaddr)},
+    minStrLen:min(strlen(string(value))),
+    maxStrLen:max(strlen(string(value)))
+)
 | group(field)		
-| select(field,
-		 type:CASE
-		    WHEN withValue = 0            THEN 'STRING<NO SAMPLES>' // no samples for type detection.
-			WHEN boolean[cnt] = withValue THEN CONCAT('BOOLEAN', '{min:', boolean[min], ', max:', boolean[max], '}')
-			WHEN integer[cnt] = withValue AND integer[min] >= -1 AND integer[max] <= 0xFFFF
-		                                  THEN CONCAT('INTEGER', '{min:', integer[min], ', max:', integer[max], '}')
-			WHEN long[cnt] = withValue    THEN CONCAT('LONG',    '{min:', long[min],    ', max:', long[max],    '}')
-			WHEN double[cnt] = withValue  THEN CONCAT('DOUBLE',  '{min:', double[min],  ', max:', double[max],  '}')
-			WHEN ipaddr[cnt] = withValue  THEN CONCAT('IPADDR')
-		    ELSE 'STRING'
-		 END,	
-		 cnt:total,
-		 isHyphenNull:nullValue,
-		 isEmpty:emptyValue,
-		 isMinusOne:minusOne,
-		 minStrLen,
-		 maxStrLen		 
-		)
+| select(
+    field,
+    type:CASE
+        WHEN withValue = 0            THEN 'STRING<NO SAMPLES>' // no samples for type detection.
+        WHEN boolean[cnt] = withValue THEN CONCAT('BOOLEAN', '{min:', boolean[min], ', max:', boolean[max], '}')
+        WHEN integer[cnt] = withValue AND integer[min] >= -1 AND integer[max] <= 0xFFFF
+                                      THEN CONCAT('INTEGER', '{min:', integer[min], ', max:', integer[max], '}')
+        WHEN long[cnt] = withValue    THEN CONCAT('LONG',    '{min:', long[min],    ', max:', long[max],    '}')
+        WHEN double[cnt] = withValue  THEN CONCAT('DOUBLE',  '{min:', double[min],  ', max:', double[max],  '}')
+        WHEN ipaddr[cnt] = withValue  THEN CONCAT('IPADDR')
+        ELSE 'STRING'
+    END,
+    cnt:total,
+    isHyphenNull:nullValue,
+    isEmpty:emptyValue,
+    isMinusOne:minusOne,
+    minStrLen,
+    maxStrLen
+)
 | sort(field)
 // result in 05_detected_types.txt
