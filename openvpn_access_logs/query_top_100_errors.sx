@@ -1,0 +1,5 @@
+@[./view/view_example_data.sx]
+| select(count(*),error)
+| group(error)
+| sort(count DESC)
+| limit(100)

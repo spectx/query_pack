@@ -1,0 +1,6 @@
+@[./view/view_example_data.sx]
+| select(time:start_time[1 day],count(*))
+| group(time)
+| sort(start_time)
+
+// press Chart after execute

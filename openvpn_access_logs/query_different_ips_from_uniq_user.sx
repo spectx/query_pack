@@ -1,0 +1,5 @@
+@[./view/view_example_data.sx]
+| select(IPs:ARRAY_AGG(real_ip))
+| group(lower(username))
+| select(username,IPs:ARRAY_UNIQ(IPs))
+| sort(ARRAY_LEN(IPs) DESC)

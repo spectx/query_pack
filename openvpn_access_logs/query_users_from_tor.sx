@@ -1,0 +1,13 @@
+$torpattern = <<<END_OF_PATTERN
+(
+'ExitNode ' LD:exitNode EOL
+'Published ' TIMESTAMP('yyyy-MM-dd HH:mm:ss'):published EOL
+'LastStatus ' TIMESTAMP('yyyy-MM-dd HH:mm:ss'):lastStatus EOL
+)?
+'ExitAddress ' IPV4:exitAddress ' ' TIMESTAMP('yyyy-MM-dd HH:mm:ss'):addrTime EOL
+END_OF_PATTERN;
+
+@tor= PARSE(src:'https://check.torproject.org/exit-addresses', pattern:$torpattern); 
+  
+@[./view/view_example_data.sx]
+| join(@tor on real_ip= exitAddress)

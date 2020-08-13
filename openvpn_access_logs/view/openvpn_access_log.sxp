@@ -1,0 +1,16 @@
+   // OpenVPN Access Server logs.
+   // Tested with version 2.6.1, 2.7.5 and 2.8.5
+
+   LD:node
+   ',' DATA*:username
+   (',' TIMESTAMP('MM/dd/yy HH:mm'):start_time) // Grouped with comma because username may contain comma.
+   ',' LD*:duration
+   ',' LD*:service
+   ',' IPADDR*:real_ip
+   ',' IPADDR*:vpn_ip
+   ',' UPPER*:proto
+   ',' INT*:port
+   ',' FLOAT*:bytes_in ' '? ENUM{''=0,'B'=1, 'KB'=1024, 'MB'=1048576, 'GB'=1073741824}(cis=true):unit_in
+   ',' FLOAT*:bytes_out ' '? ENUM{''=0,'B'=1, 'KB'=1024, 'MB'=1048576, 'GB'=1073741824}(cis=true):unit_out
+   ','? LD?:error (EOL| EOS)
+   EOL?
