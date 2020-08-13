@@ -1,4 +1,12 @@
 // https://docs.spectx.com/v2/spectx_core/web_user_interface/visualization_wui.html#resultset-coloring
 
 @[./view/view_default.sx]
-| select(_rowcolor: if(uri like '%chmod+%', 'red', if(uri like '%wp-login%', 'green')), *)
+| select(
+  _rowcolor:CASE
+    WHEN uri like '%chmod+%'   THEN 'red'
+    WHEN uri like '%wp-login%' THEN 'green'
+    WHEN response = 404        THEN 'gray'
+    WHEN referrer != '-'       THEN '#006666'
+  END,
+  *
+)
