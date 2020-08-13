@@ -1,0 +1,5 @@
+@[./view/view_example_data.sx]
+| select(start_time, geo(real_ip))
+| sort(start_time)
+
+// press MAP after execute

@@ -1,0 +1,6 @@
+@[./view/view_example_data.sx]
+| select(real_countries:cc(real_ip))
+| select(real_countries, cnt:count(*))
+| group(@1)
+| sort(cnt DESC)
+| limit(100)

@@ -1,0 +1,4 @@
+@[./view/view_example_data.sx]
+| select(Username,Machine,cnt:count(*))
+| group(@1,@2)
+| limit(100)

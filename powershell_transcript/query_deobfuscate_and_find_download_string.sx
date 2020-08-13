@@ -1,0 +1,3 @@
+@[./view/view_example_data.sx]
+| select(deobf_commandText:lower(REPLACEALL(commandText, "[\\`,\\‘,\\’,\\,\\+,\\*,\\',\\”,\\“]" , '')) ) 
+| filter(deobf_commandText contains 'download')

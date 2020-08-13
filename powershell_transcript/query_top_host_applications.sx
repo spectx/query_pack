@@ -1,0 +1,5 @@
+@[./view/view_example_data.sx]
+| select(cnt:count(*),Host_Application)
+| group(@2)
+| sort(cnt DESC)
+| limit(100)

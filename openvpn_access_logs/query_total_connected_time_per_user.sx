@@ -1,0 +1,4 @@
+@[./view/view_example_data.sx]
+| select(SUM(duration_sec),*)
+| group(username)
+| sort(sum_duration_sec DESC)

@@ -1,0 +1,4 @@
+@[./view/view_example_data.sx]
+| select(username,data_sent_MB:round(sum(out_MB),2))
+| group(username)
+| sort(data_sent_MB DESC)

@@ -1,0 +1,5 @@
+@[./view/view_example_data.sx]
+| select(PUNCT(command, 64, false), cnt:count(*),uniq_commands:ARRAY_LEN(ARRAY_UNIQ(ARRAY_AGG(command))),commands_array:ARRAY_UNIQ(ARRAY_AGG(command)))
+| group(@1)
+| sort(cnt)
+| limit(100)

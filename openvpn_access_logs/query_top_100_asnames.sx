@@ -1,0 +1,6 @@
+@[./view/view_example_data.sx]
+| select(asname(real_ip))
+| select(asname, cnt:count(*))
+| group(@1)
+| sort(cnt DESC)
+| limit(100)

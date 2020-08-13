@@ -1,0 +1,2 @@
+LIST('s3://Spectx-docs/logs/windows/powershell_transcripts/20200522/PowerShell_transcript.DESKTOP-7KL6SCQ.FX0Ox4N%2b.20200522162510.txt')
+| parse(pattern:$[./powershell_transcript_log.sxp])

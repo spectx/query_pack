@@ -1,0 +1,26 @@
+LIST('s3s://spectx-docs/logs/windows/powershell_transcripts/*/*.*.txt')
+| parse(pattern:$[./powershell_transcript_log.sxp])
+
+| select(prologue:keep(prologue), *)
+| select(SPREAD(prologue),SPREAD(epilogue),*)
+| select(start_time:startTime,
+	end_time:endTime,
+	Username:props[Username] ,
+	RunAs_User:props[RunAs User],
+	Machine:props[Machine],
+	Host_Application:props[Host Application],
+	PID:INT(props[Process ID]),
+	PSVersion:string(props[PSVersion]),
+	PSEdition:string(props[PSEdition]),
+	PSCompatibleVersions:string(props[PSCompatibleVersions]),
+	BuildVersion:string(props[BuildVersion]),
+	CLRVersion:string(props[CLRVersion]),
+	WSManStackVersion:string(props[WSManStackVersion]),
+	PSRemotingProtocolVersion:string(props[PSRemotingProtocolVersion]),
+	SerializationVersion:string(props[SerializationVersion]),
+	*)
+		
+| select(*,command_value:parse("(EOL|WINEOL)? LD:command (((WINEOL|EOL) DATA{0,10485760}:output)|EOS) ",commandText))
+| select(*,command:command_value[command],output:command_value[output]) 
+| unselect(prologue,epilogue,props,command_value)
+| sort(start_time DESC)

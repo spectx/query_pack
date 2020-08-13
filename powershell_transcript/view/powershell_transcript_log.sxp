@@ -1,0 +1,36 @@
+   $eol=(EOLWIN | EOL);
+   $asteriskLine='**********************' $eol;
+   $prologue=
+   $asteriskLine
+   ('Windows PowerShell' | 'PowerShell') ' transcript start' $eol
+   'Start time: ' TIMESTAMP('yyyyMMddHHmmss'):startTime $eol
+   KVP{LD:key ': ' LD*:value $eol}:props
+   $asteriskLine
+   ;
+   $epilogue=
+   $asteriskLine
+   ('Windows PowerShell' | 'PowerShell') ' transcript end' $eol
+   'End time: ' TIMESTAMP('yyyyMMddHHmmss'):endTime $eol
+   $asteriskLine
+   ;
+   $commandStartTime=
+   $asteriskLine
+   'Command start time: ' TIMESTAMP('yyyyMMddHHmmss'):commandStartTime $eol
+   $asteriskLine
+   ;
+   $commandText=
+   <<$asteriskLine                 // look behind for asterisk line
+   DATA{0,10485760}:commandText    // maximum 10MB
+   // match until $eol followed by next prologue, epilogue, commandStartTime or EndOfFile (EOF)
+   ($eol >>($prologue | $epilogue | $commandStartTime | EOF)) 
+   /*    
+   !!! note that the commandText is not sanitized and may contain "fake" asterisk line 
+   and other elements resembling technical blocks (prologue, epilogue, commandStart). !!!
+   */  
+   ;
+   (
+   // File must start with prologue, optionally with unicode endian sequence
+   (BOF '\ufeff'? $prologue:prologue)
+   // Next record must be one from list (prologue, epilogue, commandText with optional commandStartTime)
+   | ($prologue:prologue | $epilogue:epilogue | ($commandStartTime? $commandText))
+   )

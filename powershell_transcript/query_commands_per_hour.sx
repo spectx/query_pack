@@ -1,0 +1,5 @@
+@[./view/view_example_data.sx]
+| select(count(*),trunc_cmd_start:commandStartTime[1h])
+| group(trunc_cmd_start)
+
+// press Chart after execute

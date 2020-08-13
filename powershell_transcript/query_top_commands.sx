@@ -1,0 +1,4 @@
+@[./view/view_example_data.sx]
+| select(cnt:count(*), command)
+| group(@2)
+| sort(cnt DESC)

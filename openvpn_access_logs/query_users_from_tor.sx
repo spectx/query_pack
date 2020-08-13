@@ -1,0 +1,2 @@
+@[./view/view_example_data.sx]
+| join(@[../tor_exit_nodes/view_cached.sx] ON left.real_ip=right.tor_ip)
