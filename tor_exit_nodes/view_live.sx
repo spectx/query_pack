@@ -7,5 +7,6 @@ $torPattern = "
   'ExitAddress ' IPV4:tor_ip ' ' TIMESTAMP('yyyy-MM-dd HH:mm:ss'):tor_time EOL
 ";
 
-PARSE(pattern:$torPattern, src:'https://check.torproject.org/exit-addresses')
+PARSE(src:'https://check.torproject.org/exit-addresses', pattern:$torPattern)
 | select(tor_ip, tor_time, tor_id)
+
