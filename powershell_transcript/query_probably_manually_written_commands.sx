@@ -1,0 +1,3 @@
+@[./view/view_example_data.sx]
+| select(start_time, end_time, Username, RunAs_User, Machine, PID, PSVersion, commandText)
+| filter(lower(commandText) contains 'c:\\')

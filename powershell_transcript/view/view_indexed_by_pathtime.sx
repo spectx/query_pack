@@ -1,0 +1,11 @@
+INIT(from:now()[-14 day], to:now());
+
+// example file 1 file
+//    s3s://Spectx-docs/logs/windows/powershell_transcripts/20200522/PowerShell_transcript.DESKTOP-7KL6SCQ.FX0Ox4N%2b.20200522162510.txt
+
+// from other scripts: @[/path/to/this/view/view_indexed_by_pathtime.sx](from:now()[-2 hour], to:now())
+
+LIST(src:'s3://Spectx-docs/logs/windows/powershell_transcripts/$yyyy$$MM$$dd$/PowerShell_transcript.*.*.$yyyy$$MM$$dd$$HH$$mm$$ss$.txt', _tz:'GMT')
+| filter(path_time BETWEEN $from[-1 day] AND $to)
+| parse(pattern:$[./powershell_transcript_log.sxp])
+| filter(commandStartTime BETWEEN $from AND $to)

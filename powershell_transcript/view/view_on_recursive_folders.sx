@@ -1,0 +1,6 @@
+LIST([
+  'file:/logs/windows/powershell_transcripts/************/PowerShell_transcript.*',
+  'file:/logs2/windows/powershell_transcripts/internal/**********/*.txt',
+  'file:/data/logs3/PowerShell_transcript.*'
+])
+| parse(pattern:$[./powershell_transcript_log.sxp])

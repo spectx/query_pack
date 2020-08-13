@@ -1,0 +1,3 @@
+@[./view/view_example_data.sx]
+| select(parse("DATA* IPADDR:ip DATA*", commandText), commandText, *)
+| filter_out(ip IS NULL)

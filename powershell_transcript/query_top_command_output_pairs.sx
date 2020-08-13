@@ -1,0 +1,5 @@
+@[./view/view_example_data.sx]
+| select(cnt:count(*), command,output)
+| group(command,output)
+| sort(cnt DESC)
+| filter_out(command IS NULL)

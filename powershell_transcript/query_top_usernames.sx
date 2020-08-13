@@ -1,0 +1,5 @@
+@[./view/view_example_data.sx]
+| select(Username, cnt:count(*))
+| group(@1)
+| sort(cnt DESC)
+| limit(100)
