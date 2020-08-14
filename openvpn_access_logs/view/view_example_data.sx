@@ -3,7 +3,7 @@ $MB=1024*1024;
 $GB=1024*1024*1024;
 
 $timeToSec(t)=long(parse("TIMESTAMP('mm:ss', tz='GMT'):t", $t))%86400000L/1000; //define TimeToSec variable to include seconds in time operations
-LIST('s3://Spectx-docs/logs/openvpn/openvpn_access_log.txt')
+LIST('s3s://spectx-docs/logs/openvpn/openvpn_access_log.txt')
 | parse(pattern:$[./openvpn_access_log.sxp])
 | select(username:REPLACE(username, '\n', ''),in_MB:round(bytes_in*unit_in/$MB,2),out_MB:round(bytes_out*unit_out/$MB,2),*)
 | select(duration_sec:$timeToSec(duration),*)
