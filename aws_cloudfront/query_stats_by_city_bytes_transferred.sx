@@ -1,0 +1,10 @@
+$location_code(location)=substr($location, 0, 3);
+
+@[./view/view_default.sx]
+| select(*, $location_code(location))
+| leftjoin(@[./view/view_edge_locations.sx] on location_code)
+| select(city, transferred:sum_long(bytes))
+| group(city)
+| sort(transferred DESC)
+
+

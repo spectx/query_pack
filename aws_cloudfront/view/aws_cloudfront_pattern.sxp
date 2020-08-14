@@ -15,7 +15,7 @@ https://docs.aws.amazon.com/athena/latest/ug/cloudfront-logs.html
   TIMESTAMP('yyyy-MM-dd\tHH:mm:ss', tz='GMT'):timestamp // '01_date' and '02_time' merged
   LD:location                          // '03_x-edge-location'
   LONG:bytes                           // '04_sc-bytes'
-  IPADDR:request_ip                    // '05_c-ip'
+  IPADDR:ip                    		   // '05_c-ip'
   LD:method                            // '06_cs-method'
   LD:host                              // '07_cs(Host)'
   LD:uri                               // '08_cs-uri-stem'

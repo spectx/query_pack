@@ -1,0 +1,13 @@
+INIT(
+  from:now()[-1 day],
+    to:now()
+);
+
+INCLUDE './aws_utils.sx';
+
+// LIST(src:'s3s://spectx-docs/logs/aws_cloudfront/www.smartcyberwise.ai/F13GMIPW293BT2.$yyyy$-$MM$-$dd$-$HH$.*.gz', _tz:'GMT')
+LIST(src:'s3s://<bucket>/<optional prefix>/<distribution ID>.$yyyy$-$MM$-$dd$-$HH$.*.gz', _tz:'GMT')
+| filter(path_time BETWEEN $from[-2 hour] AND $to)
+| parse(pattern:$[./aws_cloudfront_pattern.sxp])
+| filter(timestamp BETWEEN $from AND $to)
+| @@aws_url_decode_text_fields

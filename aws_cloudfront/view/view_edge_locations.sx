@@ -1,0 +1,11 @@
+@stream=
+LIST('https://cdn.jsdelivr.net/gh/ft6/cloud.feitsui.com/cloudfront-edge-locations.json')
+| parse(pattern:"JSON:j EOL")
+| select(node:unnest(VARIANT_OBJECT(j[nodes])))
+| select(location_code:node[key], country:STRING(node[value][country]), city:STRING(node[value][city]))
+| group(location_code) // make sure we have no dups.
+;
+
+// cache result, invalidate after 1 hour.
+@trigger=dual.select(now()[1 hour]);
+CACHE_V1(path:'/user/cache/view_edge_locations.sxt', trigger:@trigger, stream:@stream)

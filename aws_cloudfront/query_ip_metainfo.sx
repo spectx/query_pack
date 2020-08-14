@@ -1,0 +1,3 @@
+@[./view/view_default.sx]
+| select(ip, cc(ip), asname(ip), geo(ip), *)
+

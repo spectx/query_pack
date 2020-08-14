@@ -1,0 +1,15 @@
+@@aws_url_decode_text_fields=select(
+  timestamp,
+  location,
+  bytes,
+  ip,
+  method,
+  host,
+  uri:URLDECODE(uri),
+  status,
+  referrer:URLDECODE(referrer),
+  user_agent:URLDECODE(user_agent),
+  query_string:URLDECODE(query_string),
+  cookie:URLDECODE(cookie),
+  *  
+);
