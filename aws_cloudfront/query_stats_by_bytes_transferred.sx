@@ -1,0 +1,3 @@
+@[./view/view_default.sx]
+| select(day:timestamp[1 hour], total_bytes:sum_long(bytes), total_request_bytes:sum_long(request_bytes))
+| group(day)

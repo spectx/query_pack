@@ -1,0 +1,10 @@
+@[./view/view_default.sx]
+| select(
+  day:timestamp[1 hour],
+  total:count(*), 
+  Hit:count(result_type = 'Hit'), 
+  Miss:count(result_type = 'Miss'), 
+  Redirect:count(result_type = 'Redirect'), 
+  Error:count(result_type = 'Error')
+)
+| group(day)

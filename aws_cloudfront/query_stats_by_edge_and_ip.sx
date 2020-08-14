@@ -1,0 +1,6 @@
+@[./view/view_default.sx]
+| select(location, ip, count(*))
+| group(location, ip)
+| select(location, uniq_ips:count(*), total_hits:sum_long(count))
+| group(location)
+| sort(uniq_ips desc)

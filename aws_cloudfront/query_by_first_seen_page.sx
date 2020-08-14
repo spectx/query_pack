@@ -1,0 +1,7 @@
+@[./view/view_default.sx]
+| filter(status = 200)
+| select(first_seen:min(timestamp), uri)
+| group(uri)
+| sort(first_seen desc)
+| select(first_seen_ago:duration(now()-first_seen), *)
+

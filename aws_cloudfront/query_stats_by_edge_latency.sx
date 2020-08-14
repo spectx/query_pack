@@ -1,0 +1,4 @@
+@[./view/view_default.sx]
+| select(location, count(*), min(time_taken), max(time_taken), avg(time_taken), STDDEV(time_taken))
+| group(location)
+| sort(avg_time_taken)

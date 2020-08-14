@@ -1,0 +1,4 @@
+@[./view/view_default.sx]
+| select(count(*), user_agent)
+| group(user_agent)
+| sort(count DESC)
