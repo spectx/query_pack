@@ -1,0 +1,9 @@
+@[./view/view_example_data.sx]
+| select(c_ip, cc(c_ip), asname(c_ip), geo(c_ip), *)
+| select(cc, count(*))
+| group(cc)
+| sort(count DESC)
+
+
+// press Chart after execute
+

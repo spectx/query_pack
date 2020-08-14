@@ -1,0 +1,5 @@
+@[./view/view_example_data.sx]
+| filter(c_ip = 185.39.11.105)
+| select(cs_uri_stem, count(cs_uri_stem) as requestcount) 
+| group (cs_uri_stem)
+| sort(requestcount DESC)

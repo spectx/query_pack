@@ -1,0 +1,6 @@
+@[./view/view_example_data.sx]
+| select(time, GEO(c_ip))
+| sort(time)
+
+
+// press Map after execute. MODE -> HEATMAP

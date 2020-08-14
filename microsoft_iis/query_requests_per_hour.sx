@@ -1,0 +1,6 @@
+@[./view/view_example_data.sx]
+| select (time[1 hour], reqcount:count(*))
+| group(time[1 hour])
+
+
+// press Chart after execute

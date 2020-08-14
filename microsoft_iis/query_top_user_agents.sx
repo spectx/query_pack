@@ -1,0 +1,4 @@
+@[./view/view_example_data.sx]
+| select(totalhits:count(*), browser:URLDECODE(cs_user_agent))
+| group(browser)
+| sort(totalhits desc)

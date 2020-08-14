@@ -1,0 +1,25 @@
+/*
+#	The log file is a customizable ASCII text-based format. The field prefixes in the file are defined as follows:
+s	Server actions. 
+c	Client actions.
+sc	Server-to-Client actions.
+cs	Client-to-Server actions.
+*/
+
+//date time s-ip cs-method cs-uri-stem cs-uri-query s-port cs-username c-ip cs(User-Agent) cs(Referer) sc-status sc-substatus sc-win32-status time-taken
+('#' DATA ((EOLWIN| EOL) !>>'#'))?	// The header i.e. everything that starts with '#' until end of a line not followed by a '#'
+TIMESTAMP('yyyy-MM-dd HH:mm:ss'):time	// The date and time on which the activity occurred
+' ' IPADDR:s_ip ('%' LD:s_zone)? 	// The IP address of the server on which the log file entry was generated.
+' ' LD:cs_method  				    // The requested verb, for example, a GET method.
+' ' LD:cs_uri_stem 					// The target of the verb, for example, Default.htm.
+' ' ('-' | LD:cs_uri_query) 		// The query, if any, that the client was trying to perform. A Universal Resource Identifier (URI) query is necessary only for dynamic pages.
+' ' INT:s_port 						// The server port number that is configured for the service.
+' ' (('-') | LD:cs_username) 		// The name of the authenticated user that accessed the server. Anonymous users are indicated by a hyphen.
+' ' IPADDR:c_ip ('%' LD:c_zone)?	// The IP address of the client that made the request.
+' ' LD:cs_user_agent				// The browser type that the client used.
+' ' ('-' | LD:cs_referer)			// The site that the user last visited. This site provided a link to the current site.
+' ' INT:sc_status					// The HTTP status code.	
+' ' INT:sc_substatus				// The substatus error code.	
+' ' LONG:sc_win32_status			// The Windows status code.	
+' ' LONG:time_taken					// The length of time that the action took, in milliseconds.
+(EOLWIN | EOL)						// End of line
