@@ -1,0 +1,3 @@
+@[./view/view_default.sx]
+| filter(asn(ip) = 15169) // google
+| select(ip, cc(ip), asname(ip), geo(ip), *)
