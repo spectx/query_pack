@@ -1,4 +1,4 @@
-@[./view/view_example_data.sx]
+@[./view/view_default.sx]
 | select (time[1 hour], reqcount:count(*))
 | group(time[1 hour])
 

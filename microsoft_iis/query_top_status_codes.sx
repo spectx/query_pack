@@ -1,4 +1,0 @@
-@[./view/view_example_data.sx]
-| SELECT(status:sc_status,count(*) ) 
-| GROUP(status)
-| SORT(status)

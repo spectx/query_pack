@@ -1,4 +1,4 @@
-@[./view/view_example_data.sx]
+@[./view/view_default.sx]
 | filter(cs_uri_stem like '%shop%' or cs_uri_stem like '%sec%')
 | select(cs_uri_stem, reqcount:count(cs_uri_stem))
 | group(cs_uri_stem)

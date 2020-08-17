@@ -1,4 +1,4 @@
-@[./view/view_example_data.sx]
+@[./view/view_default.sx]
 | select(c_ip, cc(c_ip), asname(c_ip), geo(c_ip), *)
 | select(cc, count(*))
 | group(cc)

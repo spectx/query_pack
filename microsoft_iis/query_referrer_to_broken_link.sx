@@ -1,4 +1,4 @@
-@[./view/view_example_data.sx]
+@[./view/view_default.sx]
 | filter(cs_referer IS NOT NULL AND sc_status = 404 AND (sc_substatus IS NULL OR sc_substatus=0))
-| select(referer:URLDECODE(cs_referer), uri:cs_uri_stem)
-| group(referer)
+| select(cs_referer, uri:cs_uri_stem)
+| group(cs_referer)

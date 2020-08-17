@@ -1,4 +1,4 @@
-@[./view/view_example_data.sx]
+@[./view/view_default.sx]
 | select(c_ip,reqcount:count(c_ip)) 
 | group(c_ip)
 | sort(reqcount desc)

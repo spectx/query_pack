@@ -1,3 +1,5 @@
+INCLUDE './iis_utils.sx';
+
 LIST('s3s://spectx-docs/logs/microsoft_iis/iis_access.log.gz')
 | parse(pattern:$[./iis_default_access_log.sxp])
-
+| @@iis_url_decode_text_fields

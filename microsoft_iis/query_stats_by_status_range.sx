@@ -1,0 +1,13 @@
+@[./view/view_default.sx]
+| select(
+  day:time[1 hour],
+  total:count(*), 
+  status_200:count(sc_status=200),
+  status_1xx:count(sc_status between 100 and 199),
+  status_2xx:count(sc_status between 200 and 299),
+  status_3xx:count(sc_status between 300 and 399),
+  status_4xx:count(sc_status between 400 and 499),
+  status_5xx:count(sc_status between 500 and 599)
+)
+| group(day)
+| select(*, fail_4xx_ratio:100.0*status_4xx/total)
