@@ -166,18 +166,16 @@ ROSBAG_META(src:@bags)
 
 @messages
 | filter(topic IN ("/gps/fix", "/obs1/gps/fix"))
-| select(time, 
-		 gps_fix:keep(if(topic="/gps/fix", value)), 
-		 obs1_gps_fix:keep(if(topic="/obs1/gps/fix", value))
-)
+| select(time,
+         gps_fix:keep(if(topic="/gps/fix", value)), 
+         obs1_gps_fix:keep(if(topic="/obs1/gps/fix", value))
+        )
 | filter(obs1_gps_fix is not null)
 | select(time, 
-		 pos:geo(gps_fix[latitude], gps_fix[longitude]),
-		 obs_pos:geo(obs1_gps_fix[latitude], obs1_gps_fix[longitude])
-)
-| select(*, 
-		 distance_to_obs_meters:1000*DISTANCE(pos, obs_pos)
-)
+         pos:geo(gps_fix[latitude], gps_fix[longitude]),
+         obs_pos:geo(obs1_gps_fix[latitude], obs1_gps_fix[longitude])
+        )
+| select(*, distance_to_obs_meters:1000*DISTANCE(pos, obs_pos))
 | sort(distance_to_obs_meters DESC)
 ```
 1 bag, 696MB data, 1 CPU Cores - 0.293 seconds
