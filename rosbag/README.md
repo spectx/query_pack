@@ -202,30 +202,36 @@ ROSBAG_META(src:@bags)
 @messages = ROSBAG(src:@list);
 
 @messages
-| select(topic, count(*), min(dataLen), max(dataLen), avg(dataLen))
+| select(topic, 
+		 count(*), 
+		 min(dataLen), 
+		 max(dataLen), 
+		 avg_data_len:long(avg(dataLen)), 
+		 total_data_len:long(sum(dataLen))
+)
 | group(topic)
 ```
 1 bag, 696MB data, 1 CPU Cores - 0.285 seconds
 
-| topic                          | count | min_dataLen | max_dataLen |       avg_dataLen |
-|--------------------------------|------:|------------:|------------:|------------------:|
-| /diagnostics                   |   140 |         336 |        1221 | 644.9642857142857 |
-| /diagnostics_agg               |    40 |        2114 |        2990 |          2557.375 |
-| /diagnostics_toplevel_state    |    40 |          31 |          31 |              31.0 |
-| /gps/fix                       |   146 |         119 |         119 |             119.0 |
-| /gps/rtkfix                    |   200 |         703 |         703 |             703.0 |
-| /gps/time                      |   192 |          34 |          34 |              34.0 |
-| /image_raw                     |   600 |      716854 |      716854 |          716854.0 |
-| /obs1/gps/fix                  |    30 |         119 |         119 |             119.0 |
-| /obs1/gps/rtkfix               |   200 |         703 |         703 |             703.0 |
-| /obs1/gps/time                 |   136 |          34 |          34 |              34.0 |
-| /radar/points                  |   400 |         173 |         497 |             306.5 |
-| /radar/range                   |   400 |          38 |          38 |              38.0 |
-| /radar/tracks                  |   400 |         307 |        1414 |           763.125 |
-| /tf                            |  1986 |          94 |          94 |              94.0 |
-| /velodyne_nodelet_manager/bond |    80 |         120 |         121 |             120.5 |
-| /velodyne_packets              |   200 |      219762 |      219762 |          219762.0 |
-| /velodyne_points               |   200 |     1223683 |     1286979 |        1270252.12 |
+| topic                          | count | min_dataLen | max_dataLen | avg_data_len | total_data_len |
+|--------------------------------|------:|------------:|------------:|-------------:|---------------:|
+| /diagnostics                   |   140 |         336 |        1221 |          644 |          90295 |
+| /diagnostics_agg               |    40 |        2114 |        2990 |         2557 |         102295 |
+| /diagnostics_toplevel_state    |    40 |          31 |          31 |           31 |           1240 |
+| /gps/fix                       |   146 |         119 |         119 |          119 |          17374 |
+| /gps/rtkfix                    |   200 |         703 |         703 |          703 |         140600 |
+| /gps/time                      |   192 |          34 |          34 |           34 |           6528 |
+| /image_raw                     |   600 |      716854 |      716854 |       716854 |      430112400 |
+| /obs1/gps/fix                  |    30 |         119 |         119 |          119 |           3570 |
+| /obs1/gps/rtkfix               |   200 |         703 |         703 |          703 |         140600 |
+| /obs1/gps/time                 |   136 |          34 |          34 |           34 |           4624 |
+| /radar/points                  |   400 |         173 |         497 |          306 |         122600 |
+| /radar/range                   |   400 |          38 |          38 |           38 |          15200 |
+| /radar/tracks                  |   400 |         307 |        1414 |          763 |         305250 |
+| /tf                            |  1986 |          94 |          94 |           94 |         186684 |
+| /velodyne_nodelet_manager/bond |    80 |         120 |         121 |          120 |           9640 |
+| /velodyne_packets              |   200 |      219762 |      219762 |       219762 |       43952400 |
+| /velodyne_points               |   200 |     1223683 |     1286979 |      1270252 |      254050424 |
 
 ### ./performance_demo.sx
 ```jsx
