@@ -1,0 +1,8 @@
+@list     = LIST('file:/data/pub_rosbag/2011-*.bag');
+@messages = ROSBAG(src:@list);
+
+@messages
+| filter(topic = "/torso_lift_imu/data")
+| filter(value[angular_velocity][x] between 0.15 and 0.17)
+| select(_uri, time, value[angular_velocity])
+
