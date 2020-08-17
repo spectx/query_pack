@@ -201,11 +201,11 @@ ROSBAG_META(src:@bags)
 
 @messages
 | select(topic, 
-		 count(*), 
-		 min(dataLen), 
-		 max(dataLen), 
-		 avg_data_len:long(avg(dataLen)), 
-		 total_data_len:long(sum(dataLen))
+         count(*), 
+         min(dataLen), 
+         max(dataLen), 
+         avg_data_len:long(avg(dataLen)), 
+         total_data_len:long(sum(dataLen))
 )
 | group(topic)
 ```
