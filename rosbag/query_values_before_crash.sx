@@ -1,0 +1,7 @@
+$file='file:/data/pub_rosbag/demo.bag';
+$crash_time=tnano("2017-03-22 04:38:00.068296671 +0200");
+
+ROSBAG(src:$file, last_topic_time:$crash_time)
+| select(topic, last(time), last(value))
+| group(topic)
+| select(topic, last_time, nanos_from_crash:$crash_time-last_time, last_value)

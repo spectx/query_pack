@@ -231,6 +231,38 @@ ROSBAG_META(src:@bags)
 | /velodyne_packets              |   200 |      219762 |      219762 |       219762 |       43952400 |
 | /velodyne_points               |   200 |     1223683 |     1286979 |      1270252 |      254050424 |
 
+### ./query_values_before_crash.sx
+```jsx
+$file='file:/data/pub_rosbag/demo.bag';
+$crash_time=tnano("2017-03-22 04:38:00.068296671 +0200");
+
+ROSBAG(src:$file, last_topic_time:$crash_time)
+| select(topic, last(time), last(value))
+| group(topic)
+| select(topic, last_time, nanos_from_crash:$crash_time-last_time, last_value)
+```
+1 bag, 696MB data, 1 CPU Cores - 0.445 seconds
+
+| topic                          | last_time                             | nanos_from_crash | last_value                                                                                                                       |
+|--------------------------------|---------------------------------------|-----------------:|----------------------------------------------------------------------------------------------------------------------------------|
+| /diagnostics                   | `2017‑03‑22 04:37:59.883427817 +0200` |        184868854 | {"header":{"seq":5520,"stamp":"2017‑03‑22 04:37:59.854942204 +0200","frame_id":""},"status":[{"level":0,"name":"piksi_rtk_diag:  |
+| /diagnostics_agg               | `2017‑03‑22 04:37:59.658565210 +0200` |        409731461 | {"header":{"seq":3571,"stamp":"2017‑03‑22 04:37:59.658464829 +0200","frame_id":""},"status":[{"level":0,"name":"/GPS","message": |
+| /diagnostics_toplevel_state    | `2017‑03‑22 04:38:00.068296671 +0200` |                0 | {"level":0,"name":"toplevel_state","message":"","hardware_id":"","values":[]}                                                    |
+| /gps/fix                       | `2017‑03‑22 04:37:59.969394630 +0200` |         98902041 | {"header":{"seq":24219,"stamp":"2017‑03‑22 04:37:59.969321422 +0200","frame_id":"gps"},"status":{"status":0,"service":1},"latitu |
+| /gps/rtkfix                    | `2017‑03‑22 04:37:59.984403758 +0200` |         83892913 | {"header":{"seq":35712,"stamp":"2017‑03‑22 04:37:59.984324602 +0200","frame_id":"gps"},"child_frame_id":"","pose":{"pose":{"posi |
+| /gps/time                      | `2017‑03‑22 04:37:59.966381924 +0200` |        101914747 | {"header":{"seq":32494,"stamp":"2017‑03‑22 04:37:59.966324399 +0200","frame_id":"gps"},"time_ref":"1978‑07‑08 01:18:20.000000000 |
+| /image_raw                     | `2017‑03‑22 04:38:00.040130232 +0200` |         28166439 | {"header":{"seq":99107,"stamp":"2017‑03‑22 04:38:00.039372812 +0200","frame_id":"camera"},"height":512,"width":1400,"encoding":" |
+| /obs1/gps/fix                  | `2017‑03‑22 04:37:59.784405894 +0200` |        283890777 | {"header":{"seq":3999,"stamp":"2017‑03‑22 04:37:59.743694124 +0200","frame_id":"gps"},"status":{"status":0,"service":1},"latitud |
+| /obs1/gps/rtkfix               | `2017‑03‑22 04:37:59.983891846 +0200` |         84404825 | {"header":{"seq":18409,"stamp":"2017‑03‑22 04:37:59.957637081 +0200","frame_id":"gps"},"child_frame_id":"","pose":{"pose":{"posi |
+| /obs1/gps/time                 | `2017‑03‑22 04:37:59.964665913 +0200` |        103630758 | {"header":{"seq":13501,"stamp":"2017‑03‑22 04:37:59.938574843 +0200","frame_id":"gps"},"time_ref":"1978‑07‑08 01:18:20.000000000 |
+| /radar/points                  | `2017‑03‑22 04:38:00.045561152 +0200` |         22735519 | {"header":{"seq":19485,"stamp":"2017‑03‑22 04:38:00.045351982 +0200","frame_id":"radar"},"height":1,"width":18,"fields":[{"name" |
+| /radar/range                   | `2017‑03‑22 04:38:00.045702837 +0200` |         22593834 | {"header":{"seq":19485,"stamp":"2017‑03‑22 04:38:00.045510053 +0200","frame_id":"radar"},"radiation_type":1,"field_of_view":0.03 |
+| /radar/tracks                  | `2017‑03‑22 04:38:00.045692051 +0200` |         22604620 | {"header":{"seq":19486,"stamp":"2017‑03‑22 04:38:00.045447111 +0200","frame_id":""},"tracks":[{"status":3,"number":1,"range":47. |
+| /tf                            | `2017‑03‑22 04:38:00.066752921 +0200` |          1543750 | {"transforms":[{"header":{"seq":0,"stamp":"2017‑03‑22 04:38:00.076665042 +0200","frame_id":"base_link"},"child_frame_id":"radar" |
+| /velodyne_nodelet_manager/bond | `2017‑03‑22 04:37:59.936875568 +0200` |        131421103 | {"header":{"seq":3303,"stamp":"2017‑03‑22 04:37:59.936821237 +0200","frame_id":""},"id":"/cloud_nodelet_5795a91f‑b289‑4c6a‑b9bc‑ |
+| /velodyne_packets              | `2017‑03‑22 04:38:00.022560202 +0200` |         45736469 | {"header":{"seq":9729,"stamp":"2017‑03‑22 04:38:00.022079468 +0200","frame_id":"velodyne"},"packets":[{"stamp":"2017‑03‑22 04:37 |
+| /velodyne_points               | `2017‑03‑22 04:38:00.025199232 +0200` |         43097439 | {"header":{"seq":9727,"stamp":"2017‑03‑22 04:38:00.022079000 +0200","frame_id":"velodyne"},"height":1,"width":39322,"fields":[{" |
+
 ### ./access_file_metainfo.sx
 ```jsx
 @list     = LIST('file:/data/pub_rosbag/2011-*.bag');
