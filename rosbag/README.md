@@ -67,7 +67,7 @@ ROSBAG_META(src:@bags)
 | group(uri)
 | sort(max_endTime)
 ```
-1 bag, 696MB data, 4 CPU Cores - 0.024 seconds
+11 bag, 4.8GB data, 4 CPU Cores - 0.024 seconds
 
 | uri                                                   | min_startTime                   | max_endTime                     | sum_long_messages |
 |-------------------------------------------------------|---------------------------------|---------------------------------|------------------:|
