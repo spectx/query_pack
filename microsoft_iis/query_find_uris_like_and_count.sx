@@ -1,6 +1,6 @@
 @[./view/view_default.sx]
-| filter(cs_uri_stem like '%shop%' or cs_uri_stem like '%sec%')
-| select(cs_uri_stem, reqcount:count(cs_uri_stem))
-| group(cs_uri_stem)
+| filter(uri_stem like '%shop%' or uri_stem like '%sec%')
+| select(uri_stem, reqcount:count(uri_stem))
+| group(uri_stem)
 | sort(reqcount desc)
 

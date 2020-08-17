@@ -1,5 +1,5 @@
 @[./view/view_default.sx]
-| select(cs_uri_stem, reqcount:count(cs_uri_stem))
-| group(cs_uri_stem)
+| select(uri_stem, reqcount:count(uri_stem))
+| group(uri_stem)
 | sort(reqcount desc)
 

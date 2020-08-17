@@ -1,20 +1,17 @@
 @@iis_url_decode_text_fields=select(
-	time,
+	timestamp,
 	s_ip, s_zone,
-	cs_method, 			
-	cs_uri_stem:URLDECODE(cs_uri_stem),	
-	cs_uri_query:URLDECODE(cs_uri_query), 	
-	s_port, 				
-	cs_username,	
+	method, 			
+	uri_stem:URLDECODE(uri_stem),	
+	uri_query:URLDECODE(uri_query), 	
+	port, 				
+	username,	
 	c_ip, c_zone,
-	cs_user_agent:URLDECODE(cs_user_agent),	
-	cs_referer:URLDECODE(cs_referer),
-	sc_status,	
-	sc_substatus,				
-	sc_win32_status,		
+	user_agent:URLDECODE(user_agent),	
+	referrer:URLDECODE(referrer),
+	status,	
+	substatus,				
+	win32_status,		
 	time_taken,
 	*
 );
-
-  
-

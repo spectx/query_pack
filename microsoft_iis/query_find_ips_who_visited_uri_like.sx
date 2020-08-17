@@ -1,6 +1,6 @@
 @[./view/view_default.sx]
-| filter(cs_uri_stem like '%sec%') 
-| select(reqcount:count(c_ip), c_ip, cs_uri_stem)
+| filter(uri_stem like '%sec%') 
+| select(reqcount:count(c_ip), c_ip, uri_stem)
 | group (c_ip)
 | sort(reqcount DESC)
 

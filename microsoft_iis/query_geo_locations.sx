@@ -1,6 +1,6 @@
 @[./view/view_default.sx]
-| select(time, GEO(c_ip))
-| sort(time)
+| select( GEO(c_ip))
+| sort(c_ip)
 
 
 // press Map after execute. MODE -> HEATMAP
