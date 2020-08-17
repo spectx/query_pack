@@ -1,0 +1,6 @@
+@bags = LIST('file:/data/pub_rosbag/*.bag');
+
+ROSBAG_META(src:@bags)
+| select(uri, min(startTime), max(endTime), sum_long(messages))
+| group(uri)
+| sort(max_endTime)

@@ -1,0 +1,6 @@
+@list     = LIST('file:/data/pub_rosbag/demo.bag');
+@messages = ROSBAG(src:@list);
+
+@messages
+| select(_file_name, *)
+| limit(1000)

@@ -1,0 +1,6 @@
+@list     = LIST('file:/data/pub_rosbag/demo.bag');
+@messages = ROSBAG(src:@list);
+
+@messages
+| filter(topic = "/gps/fix")
+| select(time, geo(value[latitude], value[longitude]), value[status][status])

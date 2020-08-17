@@ -1,0 +1,7 @@
+@list     = LIST('file:/data/pub_rosbag/2011-*.bag'); // 6 bags, ~3.5GB
+@messages = ROSBAG(src:@list);
+
+@messages
+| filter(topic = "/base_odometry/odom")
+| select(time[1 sec], avg(float(value[twist][twist][linear][x])))
+| group(@1)

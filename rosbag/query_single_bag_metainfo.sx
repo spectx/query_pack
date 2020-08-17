@@ -1,0 +1,3 @@
+@bags = LIST('file:/data/pub_rosbag/demo.bag');
+
+ROSBAG_META(src:@bags)

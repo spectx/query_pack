@@ -1,0 +1,7 @@
+@list     = LIST('file:/data/pub_rosbag/demo.bag');
+@messages = ROSBAG(src:@list);
+
+@messages
+| select(time[100ms], events:count(*), bytes:long(sum(dataLen)))
+| group(@1)
+

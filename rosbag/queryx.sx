@@ -1,0 +1,4 @@
+@list     = LIST('file:/data/rosbag/demo.bag');
+@messages = ROSBAG(src:@list);
+
+@messages
