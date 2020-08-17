@@ -27,6 +27,15 @@ wget https://storage.googleapis.com/cartographer-public-data/bags/toru/hallway_r
 wget https://storage.googleapis.com/cartographer-public-data/bags/mir/landmarks_demo_uncalibrated.bag    #  41MB
 ```
 
+### Access
+.bags can be accessed from the following archives:
+* file:// - local filesystem
+* http:// - http protocol
+* s3:// - Amazon Simple Storage Service (S3)
+* gs:// - Google Cloud Storage
+* wasb:// - Microsoft Azure Blob Storage
+* hdfs:// - Hadoop Distributed File System
+* ssh:// - Remote file access over SSH.
 
 ## Queries
 
