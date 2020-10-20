@@ -1,6 +1,6 @@
 // @[./view/view_example_data.sx] (from:now()[-2 day], to:now(),app:'drive')
 // @[./view/view_example_data.sx] (from:now()[-2 day], to:now())
-@[./view/view_example_data.sx](app:'drive')
+@[./view/view_example_data.sx](app:'drive',from:now()[-20 day])
 | select(
          owner:string(event[drive][owner]),
          event[drive][doc_title],
