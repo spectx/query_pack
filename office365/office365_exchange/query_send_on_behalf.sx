@@ -1,0 +1,9 @@
+@[./view/default_query.sx]
+| filter(Operation = "SendOnBehalf")
+| select(CreationTime,
+         UserId,
+         fields[SendOnBehalfOfUserSmtp],
+         Item[Subject],
+         Operation
+)
+

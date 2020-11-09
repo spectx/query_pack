@@ -1,0 +1,10 @@
+@[./view/default_query.sx]
+| filter_out(fields[SendAsUserSmtp] IS NULL)
+| select(CreationTime,
+         ClientIP,
+         UserId,
+         fields[SendAsUserSmtp],
+         ResultStatus,
+         Item[Subject]  
+)
+

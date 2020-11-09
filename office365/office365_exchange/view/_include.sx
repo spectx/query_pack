@@ -1,0 +1,3 @@
+@example_data = @[./view_example_data.sx];
+@your_data_1d = @[./view_your_data.sx](from:now()[-1 day], to:now());
+@your_data_1w = @[./view_your_data.sx](from:now()[-7 day], to:now());

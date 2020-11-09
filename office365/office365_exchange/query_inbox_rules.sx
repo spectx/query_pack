@@ -1,0 +1,8 @@
+@[./view/default_query.sx]
+| filter(Operation like "%InboxRule%")
+| select(CreationTime,
+         Parameters[Name],
+         UserId,
+         Operation,
+         Parameters
+)

@@ -1,0 +1,4 @@
+@[./view/default_query.sx]
+| filter(Operation = "New-Mailbox")
+| select(Parameters[Name] ,*)
+| filter_out(string(Name) like 'SPO_Arbitration_%')

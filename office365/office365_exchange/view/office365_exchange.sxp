@@ -1,0 +1,17 @@
+// https://docs.microsoft.com/en-us/office/office-365-management-api/office-365-management-activity-api-schema
+
+JSON{
+  TIMESTAMP('yyyy-MM-ddTHH:mm:ss', tz='UTC')+:CreationTime,
+  STRING:Workload,        STRING:ClientIP,         STRING+:Id:null,
+  STRING+:UserId,         INT+:UserType,           STRING+:UserKey,
+  STRING+:RecordType,     STRING+:Operation,       STRING:OriginatingServer,
+  STRING:LogonUserSid,    INT:LogonType,           INT:InternalLogonType,
+  STRING:ObjectId,        INT:Scope,               STRING:ResultStatus,
+  STRING:AppId,           STRING:ClientAppId,      BOOLEAN:ExternalAccess,
+  STRING:MailboxGuid,     STRING:MailboxOwnerUPN,  STRING:MailboxOwnerMasterAccountSid,
+  STRING:MailboxOwnerSid, STRING:ClientInfoString, {}:Item,
+  ('[' KVP{'{'? '\"Name\":' ' '? DQS:key ',' ' '? '\"Value\":' ' '? DQS:value '}' ','? ' '? }:Parameters ']'):Parameters,
+  STRING:ModifiedObjectResolvedName,               JSON_ARRAY:ModifiedProperties, 
+  STRING:UserAgent,       STRING:Version:null,     STRING+:OrganizationId:null,
+  STRING:OrganizationName:null
+}(flat=true, greedy='fields') EOL

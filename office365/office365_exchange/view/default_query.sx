@@ -1,0 +1,4 @@
+// @your_data_1d  // Query 1 day data
+// @your_data_1w  // Query 7 day data
+// @[./view_your_data.sx](from:now()[-3 day], to:now()) // Query X day(s) data
+@example_data   // Query example data

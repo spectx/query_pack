@@ -1,0 +1,15 @@
+@[./view/default_query.sx]
+| filter(Operation like "Set-Mailbox")
+| select(ClientIPSocket:IPV4SOCKET(ClientIP))
+| select(CreationTime,
+         IPADDR(ClientIPSocket),
+         CC(ClientIPSocket),
+         ASNAME(ClientIPSocket),
+         Name:SPLIT(ObjectId,'/'),
+         ResultStatus,
+         Operation,
+         Parameters
+)
+| select_replace(Name:ARRAY_LAST(Name))
+| filter_out(string(Name) like 'SPO_Arbitration_%')
+| sort(CreationTime DESC)

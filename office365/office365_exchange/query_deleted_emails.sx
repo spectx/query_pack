@@ -1,0 +1,2 @@
+@[./view/default_query.sx]
+| filter(RecordType = "3")

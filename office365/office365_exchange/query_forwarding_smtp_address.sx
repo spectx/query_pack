@@ -1,0 +1,7 @@
+@[./view/default_query.sx]
+| filter_out(Parameters[ForwardingSmtpAddress] IS NULL)
+| select(CreationTime,
+         UserId,
+         Parameters[ForwardingSmtpAddress],
+         Parameters[DeliverToMailboxAndForward]         
+)

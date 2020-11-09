@@ -1,0 +1,10 @@
+@[./view/default_query.sx]
+| filter(Operation LIKE "%DistributionGroup%")
+| select(CreationTime,
+         Identity:ARRAY_LAST(SPLIT(STRING(Parameters[Identity]), '/')),
+         Parameters[ManagedBy],
+         Parameters[Member],
+         Parameters[Members],
+         *
+)
+| sort(CreationTime DESC)

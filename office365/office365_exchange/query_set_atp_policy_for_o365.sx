@@ -1,0 +1,3 @@
+@[./view/default_query.sx]
+| filter(Operation = 'Set-AtpPolicyForO365')
+| select(CreationTime,Parameters[BlockUrls],*)

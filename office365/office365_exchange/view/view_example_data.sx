@@ -1,0 +1,3 @@
+LIST('s3s://spectx-docs/logs/Office365/Office365-exchange.json')
+| PARSE(pattern:$[./office365_exchange.sxp])
+
