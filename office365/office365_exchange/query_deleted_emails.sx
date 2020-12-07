@@ -1,2 +1,2 @@
-@[./view/default_query.sx]
+@Office365_exchange
 | filter(RecordType = "3")

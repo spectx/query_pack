@@ -1,0 +1,3 @@
+@Office365_ad
+| select(time:CreationTime[1 hour], cnt:count(*))
+| group(@1) // and press chart

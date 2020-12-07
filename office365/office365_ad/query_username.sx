@@ -1,0 +1,3 @@
+$user= 'list';  // lowercase username
+@Office365_ad
+| filter(lower(UserKey) contains  $user  OR lower(UserId) contains $user)

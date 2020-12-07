@@ -1,0 +1,9 @@
+@Office365_ad
+| filter(Operation = "Enable account.")
+| select(CreationTime,
+         Actor:fields[Actor][0][ID],
+         TargetUser:fields[Target][1][ID],
+         AccountEnabled:ModifiedProperties[AccountEnabled][NewValue],
+         ActionClientName:ModifiedProperties['Action Client Name'][NewValue],
+         Operation
+)

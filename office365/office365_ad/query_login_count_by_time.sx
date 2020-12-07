@@ -1,0 +1,6 @@
+@Office365_ad
+| filter(Operation='UserLoggedIn')
+| select(time:CreationTime[1 h], cnt:count(*))
+| group(@1) // and press chart
+
+

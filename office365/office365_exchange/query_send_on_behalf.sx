@@ -1,4 +1,4 @@
-@[./view/default_query.sx]
+@Office365_exchange
 | filter(Operation = "SendOnBehalf")
 | select(CreationTime,
          UserId,

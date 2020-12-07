@@ -1,0 +1,5 @@
+@Office365_ad
+| select(ClientIP, cc(ClientIP), asname(ClientIP), geo(ClientIP), *)
+| select(cc, cnt:count(*))
+| group(@1)
+| sort(cnt DESC)

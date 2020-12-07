@@ -1,4 +1,4 @@
-@[./view/default_query.sx]
+@Office365_exchange
 | filter_out(fields[SendAsUserSmtp] IS NULL)
 | select(CreationTime,
          ClientIP,

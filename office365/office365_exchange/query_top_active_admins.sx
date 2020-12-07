@@ -1,0 +1,6 @@
+@Office365_exchange
+| filter(UserType = "Admin")
+| select(UserId, cnt:count(*))
+| group(@1)
+| sort(cnt DESC)
+| limit(1000)

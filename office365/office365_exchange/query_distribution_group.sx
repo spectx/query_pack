@@ -1,5 +1,7 @@
-@[./view/default_query.sx]
-| filter(Operation LIKE "%DistributionGroup%")
+$op= '%'; // Remove, Update, Add, Set, % = all
+@Office365_exchange
+
+| filter(Operation LIKE ($op +"%DistributionGroup%"))
 | select(CreationTime,
          Identity:ARRAY_LAST(SPLIT(STRING(Parameters[Identity]), '/')),
          Parameters[ManagedBy],

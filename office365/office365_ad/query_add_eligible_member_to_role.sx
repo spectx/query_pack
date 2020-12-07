@@ -1,0 +1,9 @@
+@Office365_ad
+| filter(Operation = "Add eligible member to role.")
+| select(CreationTime,
+         Actor:fields[Actor][0][ID],
+         TargetUser:fields[Target][1][ID],
+         Role:ModifiedProperties['Role.DisplayName'][NewValue],
+         RoleWellKnownObjectName:ModifiedProperties['Role.WellKnownObjectName'][NewValue],
+         Operation
+)

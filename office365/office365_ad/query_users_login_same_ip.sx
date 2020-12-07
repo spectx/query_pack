@@ -1,0 +1,18 @@
+@Office365_ad
+| select(
+         logins:count(*),
+         ClientIP:IP_TRUNC(ClientIP,32,64),
+         UserKey
+)
+| group(UserKey, ClientIP)
+| select(logins:SUM_LONG(logins), *)
+| group(ClientIP, UserKey)
+| select(
+         users:count(*),
+         sum_logins:SUM_LONG(logins),
+         ClientIP, cc(ClientIP), asname(ClientIP), geo(ClientIP), 
+         ARRAY_AGG(lower(UserKey))
+)
+| group(ClientIP)
+| sort(users DESC)
+| filter(users > 1L)

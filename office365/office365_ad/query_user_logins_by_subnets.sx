@@ -1,0 +1,13 @@
+@Office365_ad
+| group(lower(UserKey),ClientIP) 
+| select(
+         login_count:count(*),
+         Succeeded:count(ResultStatus = 'Succeeded' AND (fields[LogonError] IS NULL OR fields[LogonError] = 'None' AND lower(string(fields[RequestType])) not contains 'logout' )),
+         Failed:count(ResultStatus = 'Failed' OR (ResultStatus = 'Succeeded' AND (fields[LogonError] IS NOT NULL AND fields[LogonError] != 'None' ))),
+         UserKey,UserId,
+         subnets:ARRAY_UNIQ(ARRAY_AGG(IP_TRUNC(ClientIP,24,64))),
+         Logins:ARRAY_AGG(ClientIP + ' '+cc(ClientIP) + ' ' + UPPER(ResultStatus))  
+)
+| group(lower(UserKey))
+| select(subnets_count:ARRAY_LEN(subnets),*)
+| sort(subnets_count DESC)

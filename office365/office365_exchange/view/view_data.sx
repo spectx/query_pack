@@ -1,6 +1,12 @@
-LIST('s3s://spectx-docs/logs/Office365/exchange.json.pi.gz')
+init(
+   from:now()[-1 day],
+   to:now(),
+);
 
-| parse(pattern:$[./office365_exchange.sxp],cache:true)
+LIST('msapi://'+ $datastore +'/office365/$yyyy$/$MM$/$dd$/$HH$/$yyyy$$MM$$dd$$HH$.exchange.json')
+     | filter(path_time >= $from[-1 day] and path_time <= $to[+1 day])
+| PARSE(pattern:$[./office365_exchange.sxp])
+
 | select_replace(UserType:case 
          WHEN UserType = 0 Then "Regular"
          WHEN UserType = 1 Then "Reserved"
@@ -14,3 +20,4 @@ LIST('s3s://spectx-docs/logs/Office365/exchange.json.pi.gz')
          END
         )
 | sort(CreationTime DESC)
+

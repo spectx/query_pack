@@ -1,0 +1,3 @@
+@Office365_ad
+| select(CreationTime,ClientIP,ID:fields[Target][1][ID],actor:fields[Actor][0][ID],Operation)
+| filter(Operation like "%Delete group.")

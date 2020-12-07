@@ -1,6 +1,7 @@
-LIST('s3s://spectx-docs/logs/Office365/exchange.json.pi.gz')
+// https://docs.microsoft.com/en-us/office/office-365-management-api/office-365-management-activity-api-schema
 
-| parse(pattern:$[./office365_exchange.sxp],cache:true)
+LIST(src:'s3s://spectx-docs/logs/Office365/ad.json.pi.gz')
+| PARSE(pattern:$[./office365_ad.sxp],cache:true)
 | select_replace(UserType:case 
          WHEN UserType = 0 Then "Regular"
          WHEN UserType = 1 Then "Reserved"

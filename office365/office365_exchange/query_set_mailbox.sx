@@ -1,4 +1,4 @@
-@[./view/default_query.sx]
+@Office365_exchange
 | filter(Operation like "Set-Mailbox")
 | select(ClientIPSocket:IPV4SOCKET(ClientIP))
 | select(CreationTime,

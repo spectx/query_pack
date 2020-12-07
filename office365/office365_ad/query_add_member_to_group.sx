@@ -1,0 +1,9 @@
+@Office365_ad
+| filter(Operation = "Add member to group.")
+| select(CreationTime,
+         UserId,
+         GroupDisplayName:ModifiedProperties['Group.DisplayName'][NewValue],
+         TargetUsers:ARRAY_REMOVE_NULLS(ARRAY_AGG(fields[Target][1][ID]))
+)
+| group(GroupDisplayName)
+| select(*,UsersCount:ARRAY_LEN(TargetUsers))

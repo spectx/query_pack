@@ -1,6 +1,4 @@
-// @[./view/view_your_data.sx](from:now()[-7 day], to:now())
-@[./default_query.sx]
-
+@Office365_exchange
 | filter(Operation LIKE "%AntiPhish%")
 | select(CreationTime,
          Parameters[AdminDisplayName],

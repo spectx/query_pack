@@ -1,0 +1,11 @@
+JSON{
+  TIMESTAMP('yyyy-MM-ddTHH:mm:ss', tz='UTC')+:CreationTime,
+  STRING:Workload,    IPADDR:ClientIP,     STRING+:Id:null,
+  STRING+:UserId,     INT+:UserType,       STRING+:UserKey,
+  STRING+:RecordType, STRING+:Operation,   STRING:AzureActiveDirectoryEventType,
+  STRING:ObjectId,    INT:Scope,           STRING:ResultStatus,
+  ('[' KVP{'{'? '\"Name\":' ' '? DQS:key ',' ' '? '\"Value\":' ' '? DQS:value '}' ','? ' '? }:ExtendedProperties ']'):ExtendedProperties,
+  ('[' KVP{'{'? '\"Name\":' ' '? DQS:key ',' STRUCTURE{ ' '? DQS ':' ' '? DQS{0,64000}:NewValue',' DQS ':'  DQS{0,64000}:OldValue '}' ','?}:value ']'?}:ModifiedProperties):ModifiedProperties,
+  STRING:Version:null, STRING+:OrganizationId:null
+}(flat=true, greedy='fields') EOL
+

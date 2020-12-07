@@ -1,0 +1,10 @@
+@Office365_ad
+| filter(RecordType = "15")
+| select(
+         Successful_login:ResultStatus = 'Succeeded' AND (fields[LogonError] IS NULL OR fields[LogonError] = 'None' AND lower(string(fields[RequestType])) not contains 'logout' ),
+         fields[LogonError],*
+)
+| select(LogonError, cnt:count(*))
+| group(@1)
+| sort(cnt DESC)
+| filter_out(LogonError IS NULL)

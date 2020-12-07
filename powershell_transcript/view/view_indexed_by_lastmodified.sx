@@ -3,7 +3,7 @@ INIT(from:now()[-7 day], to:now());
 // example file 1 file
 //    s3s://Spectx-docs/logs/windows/powershell_transcripts/20200522/PowerShell_transcript.DESKTOP-7KL6SCQ.FX0Ox4N%2b.20200522162510.txt
 
-LIST('s3://Spectx-docs/logs/windows/powershell_transcripts/*/PowerShell_transcript.DESKTOP-7KL6SCQ.*.*.txt')
+LIST('s3://spectx-docs/logs/windows/powershell_transcripts/*/PowerShell_transcript.DESKTOP-7KL6SCQ.*.*.txt')
 | filter(last_modified BETWEEN $from[-1 day] AND $to)
 | parse(pattern:$[./powershell_transcript_log.sxp])
 | filter(commandStartTime BETWEEN $from AND $to)

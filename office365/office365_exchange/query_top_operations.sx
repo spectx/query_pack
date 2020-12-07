@@ -1,0 +1,5 @@
+@Office365_exchange
+| select(Operation, cnt:count(*))
+| group(@1)
+| sort(cnt DESC)
+| limit(1000)

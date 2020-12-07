@@ -1,0 +1,4 @@
+// "Regular" , "Reserved", "Admin", "DcAdmin", "System", "Application", "ServicePrincipal", "CustomPolicy", "SystemPolicy"
+@Office365_ad
+| filter(UserType = "ServicePrincipal")
+

@@ -1,0 +1,11 @@
+@Office365_ad
+| select_replace(ClientIP:IPADDR(ClientIP))
+| filter(RecordType = "15")
+| select(
+         Total:COUNT(*),
+         Succeeded:COUNT(ResultStatus = 'Succeeded' AND (fields[LogonError] IS NULL OR fields[LogonError] = 'None' )),
+         Failed:COUNT(ResultStatus = 'Failed' OR (ResultStatus = 'Succeeded' AND (fields[LogonError] IS NOT NULL AND fields[LogonError] != 'None' ))),
+         UserKey
+)
+| group(UserKey)
+| sort(Failed DESC)

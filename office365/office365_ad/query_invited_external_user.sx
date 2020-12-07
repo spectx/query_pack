@@ -1,0 +1,12 @@
+@Office365_ad
+| filter(Operation = "Add user.")
+| select(CreationTime,
+         ClientIP,
+         UserKey,
+         CreationType:ModifiedProperties[CreationType][NewValue],
+         Email:ModifiedProperties[UserPrincipalName][NewValue],
+         OtherEmail:ModifiedProperties[OtherMail][NewValue],
+         Operation,
+         ResultStatus,
+         *)
+| filter(CreationType = "[\r\n  \"Invitation\"\r\n]")

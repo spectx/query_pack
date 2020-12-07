@@ -1,0 +1,19 @@
+/* 
+To view your data, follow these steps:
+1. replace the $datastore value with the name of your datastore
+2. replace the value of @O365_exchange and @Office365_ad with one of the ranges below, for example @Office365_ad = @O365_3d;
+NOTE: The very first query can take hours. Max period for retrieving O365_exchange = 7d; Office365AD logs = 30d. Queries get faster and time periods longer as the queries cache data to your machine.
+*/
+
+$datastore = 'YourO365ApiDatastore';  // replace value
+
+@Office365_exchange    = @example_data; // replace value
+@Office365_ad          = @example_data; // replace value 
+
+// Predefined date ranges. 
+@example_data = @[./view/view_example_data.sx];
+@O365 = @[./view/view_data.sx];
+@O365_1d = @[./view/view_data.sx](from:now()[-1 day],to:now());
+@O365_3d = @[./view/view_data.sx](from:now()[-3 day],to:now());
+@O365_7d = @[./view/view_data.sx](from:now()[-7 day],to:now());
+@O365_30d = @[./view/view_data.sx](from:now()[-30 day],to:now());

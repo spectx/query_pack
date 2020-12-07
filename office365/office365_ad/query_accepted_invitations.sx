@@ -1,0 +1,9 @@
+@Office365_ad
+| filter_out(ModifiedProperties[AcceptedAs] IS NULL)
+| filter(Operation = "Update user.")
+| select(CreationTime,
+         TargetUser:ModifiedProperties[AcceptedAs][NewValue],
+         UserState:ModifiedProperties[UserState][NewValue],
+         IncludedUpdatedProperties:ModifiedProperties['Included Updated Properties'][NewValue],
+         TargetUserType:ModifiedProperties['TargetId.UserType'][NewValue]
+)

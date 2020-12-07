@@ -1,0 +1,8 @@
+@Office365_ad
+| filter(RecordType = "15")
+| select(UserKey, cnt:count(*),ExtendedProperties[UserAgent])
+| group(UserAgent,UserKey)
+| select(UserKey, cnt:count(*),UserAgents:REMOVE_NULLS(ARRAY_AGG(UserAgent)))
+| group(@1)
+| sort(cnt DESC)
+| filter(cnt > 2)

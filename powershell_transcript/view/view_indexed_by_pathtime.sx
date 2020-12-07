@@ -5,7 +5,7 @@ INIT(from:now()[-14 day], to:now());
 
 // from other scripts: @[/path/to/this/view/view_indexed_by_pathtime.sx](from:now()[-2 hour], to:now())
 
-LIST(src:'s3://Spectx-docs/logs/windows/powershell_transcripts/$yyyy$$MM$$dd$/PowerShell_transcript.*.*.$yyyy$$MM$$dd$$HH$$mm$$ss$.txt', _tz:'GMT')
+LIST(src:'s3://spectx-docs/logs/windows/powershell_transcripts/$yyyy$$MM$$dd$/PowerShell_transcript.*.*.$yyyy$$MM$$dd$$HH$$mm$$ss$.txt', _tz:'GMT')
 | filter(path_time BETWEEN $from[-1 day] AND $to)
 | parse(pattern:$[./powershell_transcript_log.sxp])
 | filter(commandStartTime BETWEEN $from AND $to)
