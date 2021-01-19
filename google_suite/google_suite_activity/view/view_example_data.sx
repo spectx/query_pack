@@ -14,7 +14,7 @@ $gsuite_activity_format="JSON{
   STRING:eventType,       STRING:eventName
 }(flat=true, greedy='event') EOL";
 
-LIST($activityLogPath + '/$yyyy$/$MM$/$dd$/$yyyy$$MM$$dd$.' + $app + '.json')
+LIST($activityLogPath + '/$yyyy$/$MM$/$dd$/$HH$/$yyyy$$MM$$dd$$HH$.' + $app + '.json')
 | filter(path_time >= $from[-1 day] AND path_time <= $to[+1 day])
 | parse($gsuite_activity_format)
 
