@@ -1,6 +1,6 @@
 JSON{
   TIMESTAMP('yyyy-MM-ddTHH:mm:ss', tz='UTC')+:CreationTime,
-  STRING:Workload,    IPADDR:ClientIP,     STRING+:Id:null,
+  STRING:Workload,    IPADDR:ClientIP,     STRING+:Id,
   STRING+:UserId,     INT+:UserType,       STRING+:UserKey,
   STRING+:RecordType, STRING+:Operation,   STRING:AzureActiveDirectoryEventType,
   STRING:ObjectId,    INT:Scope,           STRING:ResultStatus,

@@ -1,0 +1,7 @@
+// @[./view/view_example_data.sx] (from:now()[-2 day], to:now(),app:'drive')
+// @[./view/view_example_data.sx] (from:now()[-2 day], to:now())
+@[./view/view_example_data.sx]
+| filter_out(event[token][app_name] IS NULL)
+| select(event[token][app_name],event[token][client_type],eventName, * )
+| select(min(time),max(time),email,*)
+| group(email,app_name,eventName)

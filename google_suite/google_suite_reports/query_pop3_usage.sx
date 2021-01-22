@@ -2,7 +2,8 @@
 // @[./view/view_example_data.sx] (from:now()[-2 day], to:now())
 @[./view/view_example_data.sx](from:now()[-30 day], to:now(), app:'user')
 
-| select(last(gmail[last_pop_time]), * )
+| select(last_pop_time:STR_TO_TIME(STRING(max(gmail[last_pop_time]))), email )
 | group(email)
 | sort(last_pop_time DESC)
-| filter_out(last_pop_time = var("1970-01-01 00:00:00.000 +0000"))
+| filter_out(last_pop_time = t("1970-01-01 00:00:00.000 +0000"))
+

@@ -1,6 +1,6 @@
 // @[./view/view_example_data.sx] (from:now()[-2 day], to:now(),app:'drive')
 // @[./view/view_example_data.sx] (from:now()[-2 day], to:now())
-@[./view/view_example_data.sx](from:now()[-90 day],app:'drive')
+@[./view/view_example_data.sx](from:now()[-30 day],app:'drive')
 | select(time:timestamp(1970,1,1,hour(time),minute(time)), email, hits:count(*))
 | group(time, email)
 | select(time, users:count(*), hits:sum(hits))
