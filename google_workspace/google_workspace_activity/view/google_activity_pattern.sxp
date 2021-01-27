@@ -1,0 +1,7 @@
+JSON{
+  TIMESTAMP('yyyy-MM-dd HH:mm:ss.SSS Z')+:time,
+  LONG+:uniqueQualifier,  STRING:customerId:null,IPADDR:ipAddress,
+  STRING:ownerDomain:null,STRING:callerType:null,STRING:email,
+  STRING:key:null,        STRING:profileId,      STRING:application,
+  STRING:eventType,       STRING:eventName
+}(flat=true, greedy='event') EOL

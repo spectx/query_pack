@@ -1,7 +1,0 @@
-@[./view/view_example_data.sx](app:'drive')
-| filter(eventType = "acl_change")
-| select(event[drive][visibility], *)
-| filter_out(visibility in ("private", "shared_internally"))
-| select(event[drive][doc_title], event[drive][doc_type], *)
-
-//| group(doc_title, visibility, email)

@@ -1,0 +1,4 @@
+// Query suspicicious logins marked by Google
+@[./view/view_data.sx](app:'login')                                     // Points to default query.
+// @[./view/view_data.sx] (from:now()[-2 day], to:now(), app:'login')   // Change from and to values.
+| filter(event[login][is_suspicious] = true )

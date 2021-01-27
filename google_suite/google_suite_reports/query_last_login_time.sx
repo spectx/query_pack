@@ -1,6 +1,0 @@
-// @[./view/view_example_data.sx] (from:now()[-2 day], to:now(), app:'customer')
-// @[./view/view_example_data.sx] (from:now()[-2 day], to:now())
-@[./view/view_example_data.sx](from:now()[-3 day], to:now(), app:'user')
-| select(max(accounts[last_login_time]),email)
-| group(email)
-| sort(last_login_time DESC)

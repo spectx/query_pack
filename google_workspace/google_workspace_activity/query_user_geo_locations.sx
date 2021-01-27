@@ -1,0 +1,7 @@
+// What is the georgaphical location of the login IPs?
+@[./view/view_data.sx](app:'login')                                     // Points to default query.
+// @[./view/view_data.sx] (from:now()[-2 day], to:now(), app:'login')   // Change from and to values.
+| select(IP_TRUNC(ipAddress,32,64), cc(ipAddress), asname(ipAddress), geo(ipAddress), *)
+| group(geo, email)
+
+// press Map after execution

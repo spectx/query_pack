@@ -1,0 +1,7 @@
+// Last time a user accessed their Gmail via IMAP
+
+@[./view/view_data.sx](from:now()[-3 day], to:now(), app:'user')
+
+| select(max(gmail[last_imap_time]), email )
+| group(email)
+| sort(last_imap_time DESC)

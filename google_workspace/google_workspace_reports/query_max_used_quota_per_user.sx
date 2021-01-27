@@ -1,0 +1,12 @@
+// Latest data volume (quota) per user (Drive, Gmail, Photos)
+
+@[./view/view_data.sx](from:now()[-3 day], to:now(), app:'user')
+| select(
+         email,
+	     drive_MB:max(accounts[drive_used_quota_in_mb]) ,
+	     gmail_MB:max(accounts[gmail_used_quota_in_mb]) ,
+	     gplus_photos_MB:max(accounts[gplus_photos_used_quota_in_mb]),
+         total_MB:max(accounts[used_quota_in_mb])
+)
+| group(email)
+| sort(total_MB DESC)

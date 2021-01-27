@@ -1,4 +1,0 @@
-// @[./view/view_example_data.sx] (from:now()[-2 day], to:now(),app:'drive')
-// @[./view/view_example_data.sx] (from:now()[-2 day], to:now())
-@[./view/view_example_data.sx]
-| filter(event[login][is_suspicious] = true )

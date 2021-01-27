@@ -1,0 +1,7 @@
+// Use one of the streams on lines 2-4 to define data scope.
+@[./view/view_data.sx]                                                  // Points to default query.
+// @[./view/view_data.sx] (from:now()[-2 day], to:now())                // Change from and to values.
+// @[./view/view_data.sx] (from:now()[-2 day], to:now(), app:'drive')   // Change from, to and app values.
+| leftjoin(@[../../tor_exit_nodes/view_cached.sx] ON left.ipAddress = right.tor_ip)  // Join with the list of cuurent TOR exit nodes.
+| filter(tor_ip is not null)
+| select(tor_ip, tor_time, tor_id, *)

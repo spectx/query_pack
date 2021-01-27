@@ -1,0 +1,8 @@
+// What are top apps using Google for authorization?
+@[./view/view_data.sx](app:'token')                                     // Points to default query.
+// @[./view/view_data.sx] (from:now()[-7 day], to:now(), app:'token')   // Change from and to values.
+| filter(eventName = "authorize")
+| select(event[token][app_name])
+| select(app_name, count(*))
+| group(@1)
+| sort(count DESC)

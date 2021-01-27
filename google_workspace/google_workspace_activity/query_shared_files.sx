@@ -1,0 +1,20 @@
+// Who (email) shared a file (doc_title) externally? With whom (target user)? Which rights did the target user get (new_value)?
+@[./view/view_data.sx](app:'drive')                                     // Points to default query.
+// @[./view/view_data.sx] (from:now()[-2 day], to:now(), app:'drive')   // Change from and to values.
+| filter(eventType = "acl_change")
+| select(event[drive][visibility], *)
+| filter(visibility = var("shared_externally"))
+| filter(eventName = "change_user_access")
+| select(time, 
+		 email,
+		 event[drive][doc_title], 
+		 event[drive][target_user],
+		 event[drive][old_value], 
+		 event[drive][new_value],
+		 event[drive][visibility], 
+		 event[drive][doc_id], 
+		 *
+)
+| sort(time desc)
+
+// | group(doc_title, visibility, email, doc_id)

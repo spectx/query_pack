@@ -1,0 +1,6 @@
+// Last time a user was active in Drive. If time = NULL, the user has never accessed Drive
+
+@[./view/view_data.sx](from:now()[-3 day], to:now(), app:'user')
+| select(max(drive[last_active_usage_time]), email,*)
+| group(email)
+

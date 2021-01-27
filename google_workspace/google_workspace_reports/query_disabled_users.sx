@@ -1,0 +1,10 @@
+// Which users are disabled?
+
+@[./view/view_data.sx](from:now()[-3 day], to:now(), app:'user')
+| select(
+         email,
+         accounts[is_disabled],
+         accounts[disabled_reason]
+)
+| group(email)
+| filter(is_disabled = true)

@@ -1,6 +1,0 @@
-// @[./view/view_example_data.sx] (from:now()[-2 day], to:now(), app:'customer')
-// @[./view/view_example_data.sx] (from:now()[-2 day], to:now())
-@[./view/view_example_data.sx](from:now()[-3 day], to:now(), app:'user')
-| select(gmail_first_time:min(gmail[last_access_time]),gmail_last_time:max(gmail[last_access_time]),email)
-| group(email)
-| sort(gmail_last_time DESC)

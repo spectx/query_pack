@@ -1,0 +1,12 @@
+// Default query for all Workspace activity logs.
+INIT(
+	app:'*', 
+	from:now()[-1 day],
+	to:now()
+);
+
+$datastore='your_datastore';  // Replace with the name of Your Google Workspace datastore.
+
+LIST('gsuite://' + $datastore + '/activity/$yyyy$/$MM$/$dd$/$HH$/$yyyy$$MM$$dd$$HH$.' + $app + '.json')
+| filter(path_time >= $from[-1 day] AND path_time <= $to[+1 day])
+| parse($[./google_activity_pattern.sxp])

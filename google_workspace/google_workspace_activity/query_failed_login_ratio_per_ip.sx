@@ -1,0 +1,17 @@
+// What is the failed login % for unique IPs with at least 1 failed login?
+@[./view/view_data.sx] (app:'login')                                    // Points to default query.
+// @[./view/view_data.sx] (from:now()[-7 day], to:now(), app:'login')   // Change from and to values.
+| filter_out(eventName = "logout")
+| select(total:count(),
+		 success:COUNT(eventName = "login_success"),
+		 failure:COUNT(eventName = "login_failure"),
+		 ipAddress:IP_TRUNC(ipAddress,32,64))
+| group(ipAddress)
+| select("failure_%":(float(failure)/total)*100,
+	     total,
+		 success,
+		 failure,
+		 ipAddress)
+| filter_out(failure = 0L)
+| sort(COLUMN('failure_%') DESC)
+| select(*, cc(ipAddress), asname(ipAddress), geo(ipAddress))

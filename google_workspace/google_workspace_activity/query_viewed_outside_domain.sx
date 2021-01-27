@@ -1,0 +1,15 @@
+// Query users viewed outside your domain.
+@[./view/view_data.sx] (app:'drive')                                    // Points to default query.
+// @[./view/view_data.sx] (from:now()[-2 day], to:now(), app:'drive')   // Change from and to values.
+| select(time,
+		 email,
+         owner:string(event[drive][owner]),
+         event[drive][doc_title],
+         event[drive][doc_type],
+	     eventType,
+         *
+)
+| filter(eventName = 'view')
+| filter_out(email like '%yourdomain.com')
+| filter_out(email = '')
+//| filter(owner in ("spectx@yourdomain.com", "other@yourdomain.com"))

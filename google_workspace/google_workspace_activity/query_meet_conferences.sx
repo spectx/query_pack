@@ -1,0 +1,17 @@
+// Google Meet sessions: time, participants, duration
+@[./view/view_data.sx](app:'meet')                                            // Points to default query.
+// @[./view/view_data.sx] (from:now()[-7 day], to:now(), app:'meet')         // Change from and to values.
+| select(start_time:(time-LONG(max(event[meet][duration_seconds]))*1000),
+		 end_time:time,
+		 participants:ARRAY_UNIQ(ARRAY_AGG(event[meet][display_name])),
+		 duration(LONG(max(event[meet][duration_seconds]))*1000),
+	     organizer:string(event[meet][organizer_email]),
+		 event[meet][conference_id],
+		 event[meet][meeting_code],
+		 event[meet][product_type],
+		 )
+| group(conference_id)
+| sort(time DESC) 
+
+// | filter(organizer like "%name%")
+

@@ -1,0 +1,10 @@
+// How many active hours and events per user per day
+// @[./view/view_example_data.sx](from:now()[-2 day], to:now(),app:'drive')
+// @[./view/view_example_data.sx](from:now()[-2 day], to:now())
+@[./view/view_data.sx](app:'drive',from:now()[-1 day])
+| select(time:time[1 hour], email, count(*))
+| group(@1, @2)
+| select(time:time[1 day], active_hours:count(*), email, total_events:sum(count))
+| group(time, email)
+| sort(active_hours DESC)
+| filter_out(email = "")

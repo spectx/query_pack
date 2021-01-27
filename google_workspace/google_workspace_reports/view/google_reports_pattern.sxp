@@ -1,0 +1,7 @@
+JSON{
+  TIMESTAMP('yyyy-MM-dd', tz='GMT')+:date,
+  STRING+:type, STRING:customerId, STRING:profileId, STRING:email,
+  {}:drive,     {}:accounts,     {}:device_management, {}:gmail, {}:gplus,
+  {}:classroom, {}:calendar,     {}:cros,              {}:meet,  {}:sites,
+  {}:app_maker, {}:apps_scripts, {}:docs,              {}:other
+}(flat=true) EOL

@@ -1,0 +1,15 @@
+// Default query for all Workspace reports logs.
+INIT(
+	app:'user',
+	from:now()[-3 day],
+	to:now()[-2 day]
+);
+
+$datastore='your_datastore';   // Replace with the name of Your Google Workspace datastore.
+
+LIST('gsuite://' + $datastore + '/reports/$yyyy$/$MM$/$dd$/$yyyy$$MM$$dd$.'+ $app +'.json')
+| filter(path_time >= $from[-1 day] AND path_time <= $to[+1 day])
+| parse($[./google_reports_pattern.sxp])
+
+
+

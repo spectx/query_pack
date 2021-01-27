@@ -1,0 +1,4 @@
+// Query users reports
+
+@[./view/view_data.sx](from:now()[-3 day], to:now()[-2 day], app:'user')
+| sort(date DESC)

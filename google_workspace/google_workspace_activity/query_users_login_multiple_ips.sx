@@ -1,0 +1,13 @@
+// From how many unique IPs has a user logged in?
+@[./view/view_data.sx] (app:'login')                                    // Points to default query.
+// @[./view/view_data.sx] (from:now()[-2 day], to:now(), app:'login')   // Change from and to values.
+| filter_out(eventName = "logout")
+| select(ipAddress:IP_TRUNC(ipAddress,32,64), cc(ipAddress), asname(ipAddress), *)
+| group(email, ipAddress)
+| select(email,
+		 IPs:ARRAY_UNIQ(ARRAY_AGG(cc + ' ' + asname + ' ' + ipAddress + ' ' + eventName))
+		)
+| group(email)
+| select(ip_count:SIZE(IPs),*)
+| filter(ip_count > 1)
+| sort(ip_count desc)

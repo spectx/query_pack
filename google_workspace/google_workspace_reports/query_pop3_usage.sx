@@ -1,0 +1,9 @@
+// // Last time a user accessed their Gmail via POP
+
+@[./view/view_data.sx](from:now()[-30 day], to:now(), app:'user')
+
+| select(last_pop_time:STR_TO_TIME(STRING(max(gmail[last_pop_time]))), email )
+| group(email)
+| sort(last_pop_time DESC)
+| filter_out(last_pop_time = t("1970-01-01 00:00:00.000 +0000"))
+

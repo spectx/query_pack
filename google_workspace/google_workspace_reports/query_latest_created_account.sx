@@ -1,0 +1,8 @@
+// Most recently created accounts.
+
+@[./view/view_data.sx](from:now()[-3 day], to:now(), app:'user')
+| select(max(accounts[creation_time]),email,accounts[num_roles_assigned])
+| group(email)
+| sort(creation_time DESC)
+
+// | filter_out(num_roles_assigned = 0)             // filter out regular users, look at users with roles

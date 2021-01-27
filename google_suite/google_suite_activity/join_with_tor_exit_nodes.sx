@@ -1,6 +1,0 @@
-// @[./view/view_example_data.sx] (from:now()[-2 day], to:now(),app:'drive')
-// @[./view/view_example_data.sx] (from:now()[-2 day], to:now())
-@[./view/view_example_data.sx]
-| leftjoin(@[../../tor_exit_nodes/view_cached.sx] ON left.ipAddress = right.tor_ip)
-| filter(tor_ip is not null)
-| select(tor_ip, tor_time, tor_id, *)

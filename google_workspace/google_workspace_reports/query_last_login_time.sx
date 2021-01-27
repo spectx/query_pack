@@ -1,0 +1,6 @@
+// Last time a user logged in to their Google account
+
+@[./view/view_data.sx](from:now()[-3 day], to:now(), app:'user')
+| select(max(accounts[last_login_time]),email,*)
+| group(email)
+| sort(last_login_time DESC)

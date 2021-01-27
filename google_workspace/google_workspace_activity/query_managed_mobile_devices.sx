@@ -1,0 +1,14 @@
+// Query devices first seen and last seen during a time period
+@[./view/view_data.sx](app:'mobile')                                    // Points to default query.
+// @[./view/view_data.sx] (from:now()[-2 day], to:now(), app:'mobile')  // Change from and to values.
+| select(
+         email, 
+         first:min(time), 
+         last:max(time), 
+         event[mobile][DEVICE_ID], 
+         event[mobile][DEVICE_TYPE], 
+         event[mobile][DEVICE_MODEL],
+         *
+)
+| group(email, DEVICE_ID)
+| sort(first DESC)

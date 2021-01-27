@@ -1,0 +1,14 @@
+// Which minute has the highest number of sum of events during a time period?
+@[./view/view_data.sx]                                                  // Points to default query.
+// @[./view/view_data.sx] (from:now()[-7 day], to:now())                // Change from and to values.
+// @[./view/view_data.sx] (from:now()[-7 day], to:now(), app:'drive')   // Change from, to and app values.
+| select(time:timestamp(year(now()),month(now()),day(now()),hour(time),minute(time)),
+		 email,
+		 events:count(*))
+| group(time, email)
+| select(time,
+		 users:count(*),
+		 events:sum(events))
+| group(time)
+
+// press Chart after Run. 

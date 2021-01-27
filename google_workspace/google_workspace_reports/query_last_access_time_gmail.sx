@@ -1,0 +1,8 @@
+// Last time a user accessed their Gmail
+
+@[./view/view_data.sx](from:now()[-3 day], to:now(), app:'user')
+| select(gmail_last_time:max(gmail[last_access_time]),email)
+| group(email)
+| sort(gmail_last_time DESC)
+
+// | filter(email contains "name")

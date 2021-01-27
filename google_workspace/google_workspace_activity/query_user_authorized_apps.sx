@@ -1,0 +1,8 @@
+// Query authorized apps per user.
+@[./view/view_data.sx](app:'token')                                     // Points to default query.
+// @[./view/view_data.sx] (from:now()[-2 day], to:now(), app:'token')   // Change from and to values.
+| filter_out(event[token][app_name] IS NULL)
+| filter(eventName = "authorize")
+| select(event[token][app_name],event[token][client_type],eventName, * )
+| select(min(time),max(time),email,apps:ARRAY_UNIQ(ARRAY_AGG(app_name)), *)
+| group(email)

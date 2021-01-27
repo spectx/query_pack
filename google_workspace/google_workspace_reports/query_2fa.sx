@@ -1,0 +1,7 @@
+// Users enforced and/or enrolled into 2-Step Verification
+
+@[./view/view_data.sx](from:now()[-3 day], to:now(), app:'user')
+| select(email,last(accounts[is_2sv_enforced]),last(accounts[is_2sv_enrolled]))
+| group(email)
+
+// | filter(is_2sv_enrolled = true)
