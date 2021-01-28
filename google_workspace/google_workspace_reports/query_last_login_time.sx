@@ -4,3 +4,4 @@
 | select(max(accounts[last_login_time]),email,*)
 | group(email)
 | sort(last_login_time DESC)
+//| sort(last_login_time) //starting from the oldest logins
