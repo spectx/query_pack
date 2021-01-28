@@ -1,7 +1,11 @@
 // Most recently created accounts.
 
 @[./view/view_data.sx](from:now()[-3 day], to:now(), app:'user')
-| select(max(accounts[creation_time]),email,accounts[num_roles_assigned])
+| select(
+	     max(accounts[creation_time]),
+	     email,
+	     accounts[num_roles_assigned]
+)
 | group(email)
 | sort(creation_time DESC)
 

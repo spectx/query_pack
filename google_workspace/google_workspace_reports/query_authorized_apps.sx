@@ -2,8 +2,9 @@
 
 @[./view/view_data.sx](from:now()[-3 day], to:now(), app:'customer')
 | filter_out(accounts[authorized_apps] IS NULL)
-| select(authorized_apps:VARIANT_ARRAY(accounts[authorized_apps]),*)
-| select(UNNEST(authorized_apps))
-| select(client_name:unnest[client_name],num_users:unnest[num_users])
+| select(authorized_apps:UNNEST(VARIANT_ARRAY(accounts[authorized_apps])))
+| select(client_name:authorized_apps[client_name],
+		 num_users:authorized_apps[num_users]
+)
 | group(client_name)
 | sort (num_users desc)

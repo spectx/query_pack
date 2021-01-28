@@ -1,17 +1,17 @@
-//
+// Top externaly shared docs.
 @[./view/view_data.sx](app:'drive')                                     // Points to default query.
 // @[./view/view_data.sx] (from:now()[-2 day], to:now(), app:'drive')   // Change from and to values.
-| select(event[drive][visibility],
-		 event[drive][doc_id], *)
-| filter(visibility = var("shared_externally"))
-| select(count(*),
-		 doc_id, 
-		 event[drive][doc_type], 
+
+| filter(event[drive][visibility]= var("shared_externally"))
+| select(
+	     count(*),
+	     doc_id:event[drive][doc_id],
+         doc_type:event[drive][doc_type],
 		 doc_titles:ARRAY_UNIQ(ARRAY_AGG(event[drive][doc_title])),
-		 visibility,
+	     visibility:event[drive][visibility],
 		 event[drive][owner],
 		 emails:ARRAY_UNIQ(ARRAY_AGG(email))
-		)
+)
 | group(doc_id)
 | sort(count DESC)
 | limit(1000)

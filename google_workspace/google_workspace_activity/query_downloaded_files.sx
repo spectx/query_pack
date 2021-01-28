@@ -2,5 +2,10 @@
 @[./view/view_data.sx](app:'drive')                                     // Points to default query.
 // @[./view/view_data.sx] (from:now()[-2 day], to:now(), app:'drive')   // Change from, to and app values.
 | filter(eventName = "download")
-| select(time, event[drive][doc_title], email,event[drive][owner], event[drive][visibility], *)
+| select(
+	     time, 
+		 event[drive][doc_title], 
+		 email,event[drive][owner], 
+		 event[drive][visibility],
+		 event[drive][doc_id])
 | sort(time DESC)

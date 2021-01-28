@@ -4,12 +4,14 @@ $email='user@yourdomain.com';       // replace email
 @[./view/view_data.sx](from:now()[-3 day], to:now()[-2 day], app:'user')  
 | sort(date DESC)
 | filter(email contains $email)
-| select(date,
+| select(
+	     date,
 		 email,
 		 drive_MB:accounts[drive_used_quota_in_mb] ,
 		 gmail_MB:accounts[gmail_used_quota_in_mb] ,
 		 gplus_photos_MB:accounts[gplus_photos_used_quota_in_mb],
-		 total_MB:accounts[used_quota_in_mb])
+		 total_MB:accounts[used_quota_in_mb]
+)
 | sort(date)
 
 // press Chart after execution

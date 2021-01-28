@@ -2,14 +2,18 @@
 @[./view/view_data.sx] (app:'login')                                    // Points to default query.
 // @[./view/view_data.sx] (from:now()[-7 day], to:now(), app:'login')   // Change from and to values.
 | filter_out(eventName = "logout")
-| select(total:count(),
+| select(
+	     total:count(),
 		 success:COUNT(eventName = "login_success"),
-		 failure:COUNT(eventName = "login_failure"))
+		 failure:COUNT(eventName = "login_failure")
+)
 | group(email)
-| select("failure_%":(float(failure)/total)*100,
+| select(
+	     "failure_%":(float(failure)/total)*100,
 	     total,
 		 success,
 		 failure,
-		 email)
+		 email
+)
 | filter_out(failure = 0L)
 | sort(COLUMN('failure_%') DESC)

@@ -1,3 +1,4 @@
+// Which users have logged in from the TOR-network?
 // Use one of the streams on lines 2-4 to define data scope.
 @[./view/view_data.sx]                                                  // Points to default query.
 // @[./view/view_data.sx] (from:now()[-2 day], to:now())                // Change from and to values.

@@ -5,7 +5,8 @@
 | select(event[drive][visibility], *)
 | filter(visibility = var("shared_externally"))
 | filter(eventName = "change_user_access")
-| select(time, 
+| select(
+	     time, 
 		 email,
 		 event[drive][doc_title], 
 		 event[drive][target_user],
@@ -13,7 +14,6 @@
 		 event[drive][new_value],
 		 event[drive][visibility], 
 		 event[drive][doc_id], 
-		 *
 )
 | sort(time desc)
 
