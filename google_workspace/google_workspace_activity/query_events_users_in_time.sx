@@ -1,0 +1,10 @@
+// How many unique users and events per time
+@[./view/view_data.sx]                                                  // Points to default query.
+// @[./view/view_data.sx] (from:now()[-2 day], to:now())                // Change from and to values.
+// @[./view/view_data.sx] (from:now()[-2 day], to:now(), app:'drive')   // Change from, to and app values.
+| select(time:time[1h], email, events:count(*))
+| group(time, email)
+| select(time, users:count(*), events:sum(events))
+| group(time)
+
+// press Chart after execution

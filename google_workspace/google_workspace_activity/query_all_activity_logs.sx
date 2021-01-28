@@ -1,0 +1,4 @@
+// Query all logs.
+@[./view/view_data.sx](app:'*')                                         // Points to default query.
+// @[./view/view_data.sx] (from:now()[-2 day], to:now() ,app:'*')       // Change from, to and app values. Apps: drive, login, meet etc.
+| sort(time DESC)
