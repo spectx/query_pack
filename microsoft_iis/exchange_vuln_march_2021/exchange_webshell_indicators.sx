@@ -1,0 +1,6 @@
+// Suspicious .aspx paths.
+@[./base_query.sx]
+| filter(uri_stem LIKE '%aspnet_client%.aspx' OR
+		 uri_stem LIKE '%ecp\\auth\\%.aspx' OR
+		 uri_stem LIKE '%owa\\auth\\%.aspx'
+)

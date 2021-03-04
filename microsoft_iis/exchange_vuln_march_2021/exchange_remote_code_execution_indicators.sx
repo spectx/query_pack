@@ -1,0 +1,3 @@
+// Identify possible historical activity related to the remote code execution exploit.
+@[./base_query.sx]
+| filter(string({*}) LIKE '%CMD=Set-OabVirtualDirectory.ExternalUrl=%')

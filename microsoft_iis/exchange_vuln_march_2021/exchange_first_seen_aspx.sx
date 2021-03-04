@@ -1,0 +1,7 @@
+// When was the first time an .aspx uri was seen? Sort with the most recent ones on top.
+@[./base_query.sx]
+| filter(uri_stem LIKE '%.aspx')
+| select(first_seen:min(timestamp), uri_stem)
+| group(uri_stem)
+| sort(first_seen desc)
+| select(first_seen_ago:duration(now()-first_seen), *)

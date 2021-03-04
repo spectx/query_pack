@@ -1,0 +1,6 @@
+// Base query to get the full view of your logs.
+LIST('s3s://spectx-docs/logs/microsoft_iis/iis_access.log.gz')  // Replace this path. Right-click on your IIS datastore > Properties > Copy path and paste. Use an asterisk in the path to query multiple files.
+| parse(pattern:$[../view/iis_default_access_log.sxp])  // SpectX pattern for parsing IIS Exchange logs.
+
+
+

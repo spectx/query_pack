@@ -1,0 +1,11 @@
+// Files targeted by suspicious POST requests.
+@[./base_query.sx]
+| filter(method = "POST")
+| filter(uri_stem IN ("/owa/auth/Current/themes/resources/logon.css",
+					  "/owa/auth/Current/themes/resources/owafont_ja.css",
+				  	  "/owa/auth/Current/themes/resources/lgnbotl.gif",
+					  "/owa/auth/Current/themes/resources/owafont_ko.css",
+					  "/owa/auth/Current/themes/resources/SegoeUI-SemiBold.eot",
+					  "/owa/auth/Current/themes/resources/SegoeUI-SemiLight.ttf",
+					  "/owa/auth/Current/themes/resources/lgnbotl.gif")
+)

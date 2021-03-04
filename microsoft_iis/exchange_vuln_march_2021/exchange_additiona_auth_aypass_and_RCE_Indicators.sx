@@ -1,0 +1,8 @@
+// Identify possible historical activity relating to the authentication bypass and RCE activity.
+@[./base_query.sx]
+| filter(method = "POST")
+| filter(uri_stem IN ("/owa/auth/Current/",
+						 "/ecp/default.flt",
+						 "/ecp/main.css",
+						) 
+		 OR uri_stem LIKE "/ecp/?.js")
