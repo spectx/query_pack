@@ -10,6 +10,6 @@ $torPattern = "
 | select(tor_ip, tor_time, tor_id);
 
 @[./base_query.sx]
-| leftjoin(@tor ON left.s_ip = right.tor_ip)
+| leftjoin(@tor ON left.c_ip = right.tor_ip)
 | filter(tor_ip is not null)
 | select(tor_ip, tor_time, tor_id, *)

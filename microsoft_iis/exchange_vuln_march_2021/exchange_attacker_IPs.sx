@@ -1,6 +1,6 @@
 // Look for attackers' IPs as reported by Volexity and Huntress.
 @[./base_query.sx]
-| filter(s_ip IN (103.77.192.219,
+| filter(c_ip IN (103.77.192.219,
 				  104.140.114.110,
 				  104.250.191.110,
 				  108.61.246.56,
