@@ -7,5 +7,5 @@ $localhost= 'file:/C:/Windows/System32/winevt/Logs/Security.evtx';       // Defa
 | EVTX()
 | join(@[./meta/EventID.sx] ON EventID)                 // Join EventID and EventID description
 | select(TimeCreated, EventID, Event_Description, *)    // Select TimeCreated, EventID, Event_Description and all other fields
-| select_remove(right_EventID, Source)                  // Unselect right_EventID, Source filed
+| select_remove(right_EventID)                          // Unselect right_EventID
 ;
