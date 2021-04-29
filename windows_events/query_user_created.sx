@@ -1,7 +1,7 @@
-// 	A user account was created.
+// A user account was created.
 @evtx
 | filter(EventID = 4720)
 | select(TimeCreated,
-		 EventData[TargetUserName],
-		 EventData[TargetDomainName],
-		 *)
+         EventData[TargetUserName],
+         EventData[TargetDomainName],
+         *)

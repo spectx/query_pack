@@ -2,10 +2,10 @@
 @evtx
 | filter(EventID = 4726)
 | select(TimeCreated,
-		 EventData[TargetUserName], 
-		 EventData[TargetDomainName],
-		 EventData[TargetSid],
-		 EventData[SubjectUserName],
-		 EventData[SubjectUserSid],
-		 *)
+         EventData[TargetUserName], 
+         EventData[TargetDomainName],
+         EventData[TargetSid],
+         EventData[SubjectUserName],
+         EventData[SubjectUserSid],
+         *)
 | sort(TimeCreated DESC)

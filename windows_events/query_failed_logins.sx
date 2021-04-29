@@ -2,16 +2,15 @@
 @evtx
 | filter(EventID = 4625)
 | select(EventData[TargetUserName],
-		 EventData[IpAddress],
-		 LogonType:INT(EventData[LogonType]),
-		 *)
+         EventData[IpAddress],
+         LogonType:INT(EventData[LogonType]),
+         *)
 | join(@[./meta/LogonTypes.sx]  ON LogonType)
 | select(TimeCreated, 
-		 EventID,
-		 TargetUserName,
-		 LogonType,
-		 Logon_Title,
-		 Description,
-		 IpAddress:IPADDR(IpAddress),
-		 *)
-
+         EventID,
+         TargetUserName,
+         LogonType,
+         Logon_Title,
+         Description,
+         IpAddress:IPADDR(IpAddress),
+         *)

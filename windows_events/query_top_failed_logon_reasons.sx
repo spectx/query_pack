@@ -4,14 +4,14 @@
 | select(Status:string(EventData[Status]), *)
 | leftjoin(@[./meta/Failures.sx] ON Status)
 | select(TimeCreated,
-		 EventData[TargetUserName],
-		 Status,
-		 Description, 
-		 EventID,
-		 *)
+         EventData[TargetUserName],
+         Status,
+         Description, 
+         EventID,
+         *)
 | select(Status,
-		 count:count(*),
-		 Description,
-		 *)
+         count:count(*),
+         Description,
+         *)
 | group(@1)
 | sort(@2 DESC)

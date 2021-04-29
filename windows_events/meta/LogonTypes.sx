@@ -1,14 +1,14 @@
 VALUES([
-	{LogonType: 0, Logon_Title: "System", Description: "Used only by the System account, for example at system startup."},
-	{LogonType: 2, Logon_Title: "Interactive", Description: "A user logged on to this computer."},
-	{LogonType: 3, Logon_Title: "Network", Description: "A user or computer logged on to this computer from the network."},
-	{LogonType: 4, Logon_Title: "Batch", Description: "Batch logon type is used by batch servers, where processes may be executing on behalf of a user without their direct intervention."},
-	{LogonType: 5, Logon_Title: "Service", Description: "A service was started by the Service Control Manager."},
-	{LogonType: 7, Logon_Title: "Unlock", Description: "This workstation was unlocked."},
-	{LogonType: 8, Logon_Title: "NetworkCleartext", Description: "A user logged on to this computer from the network. The user\'s password was passed to the authentication package in its unhashed form. The built-in authentication packages all hash credentials before sending them across the network. The credentials do not traverse the network in plaintext (also called cleartext)."},
-	{LogonType: 9, Logon_Title: "NewCredentials", Description: "A caller cloned its current token and specified new credentials for outbound connections. The new logon session has the same local identity, but uses different credentials for other network connections."},
-	{LogonType: 10, Logon_Title: "RemoteInteractive", Description: "A user logged on to this computer remotely using Terminal Services or Remote Desktop."},
-	{LogonType: 11, Logon_Title: "CachedInteractive", Description: "A user logged on to this computer with network credentials that were stored locally on the computer. The domain controller was not contacted to verify the credentials."},
-	{LogonType: 12, Logon_Title: "CachedRemoteInteractive", Description: "Same as RemoteInteractive. This is used for internal auditing."},
-	{LogonType: 13, Logon_Title: "CachedUnlock", Description: "Workstation logon."}
+    {LogonType: 0, Logon_Title: "System", Description: "Used only by the System account, for example at system startup."},
+    {LogonType: 2, Logon_Title: "Interactive", Description: "A user logged on to this computer."},
+    {LogonType: 3, Logon_Title: "Network", Description: "A user or computer logged on to this computer from the network."},
+    {LogonType: 4, Logon_Title: "Batch", Description: "Batch logon type is used by batch servers, where processes may be executing on behalf of a user without their direct intervention."},
+    {LogonType: 5, Logon_Title: "Service", Description: "A service was started by the Service Control Manager."},
+    {LogonType: 7, Logon_Title: "Unlock", Description: "This workstation was unlocked."},
+    {LogonType: 8, Logon_Title: "NetworkCleartext", Description: "A user logged on to this computer from the network. The user\'s password was passed to the authentication package in its unhashed form. The built-in authentication packages all hash credentials before sending them across the network. The credentials do not traverse the network in plaintext (also called cleartext)."},
+    {LogonType: 9, Logon_Title: "NewCredentials", Description: "A caller cloned its current token and specified new credentials for outbound connections. The new logon session has the same local identity, but uses different credentials for other network connections."},
+    {LogonType: 10, Logon_Title: "RemoteInteractive", Description: "A user logged on to this computer remotely using Terminal Services or Remote Desktop."},
+    {LogonType: 11, Logon_Title: "CachedInteractive", Description: "A user logged on to this computer with network credentials that were stored locally on the computer. The domain controller was not contacted to verify the credentials."},
+    {LogonType: 12, Logon_Title: "CachedRemoteInteractive", Description: "Same as RemoteInteractive. This is used for internal auditing."},
+    {LogonType: 13, Logon_Title: "CachedUnlock", Description: "Workstation logon."}
 ])

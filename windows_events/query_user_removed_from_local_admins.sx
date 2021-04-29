@@ -1,10 +1,10 @@
 // A member was removed from local administrators group.
 @evtx
 | select(EventData[TargetUserName],
-		 EventData[MemberSid], 
-	     EventData[TargetSid],
-		 SubjectUserName:string(EventData[SubjectUserName]),
-		 *)
+         EventData[MemberSid], 
+         EventData[TargetSid],
+         SubjectUserName:string(EventData[SubjectUserName]),
+         *)
 | filter((EventID = 4733 AND TargetSid = 'S-1-5-32-544')
-		 AND SubjectUserName NOT LIKE '%$' )
+         AND SubjectUserName NOT LIKE '%$' )
 | sort(TimeCreated DESC)
