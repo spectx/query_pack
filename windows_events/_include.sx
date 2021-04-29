@@ -1,11 +1,11 @@
-$s3='s3://spectx-docs/logs/windows/Security.evtx';
-$localhost= 'file:/C:/Windows/System32/winevt/Logs/Security.evtx';
+$s3_example='s3://spectx-docs/logs/windows/Security.evtx';               // Example data location
+$localhost= 'file:/C:/Windows/System32/winevt/Logs/Security.evtx';       // Default localhost Security.evtx path
 @evtx=LIST([
-   $s3,                        // Comment if you don't wish to query SpectX sample data.
-// $localhost,                 // Uncomment if you wish to query localhost events.
-           ]) 
+    $s3_example,               // Comment if you don't wish to query SpectX sample data.
+    // $localhost,             // Uncomment if you wish to query localhost events.
+]) 
 | EVTX()
-| join(@[./meta/EventID.sx] ON EventID)
-| select(TimeCreated, EventID,Event_Description,*)
-| select_remove(right_EventID,Source)
+| join(@[./meta/EventID.sx] ON EventID)                 // Join EventID and EventID description
+| select(TimeCreated, EventID, Event_Description, *)    // Select TimeCreated, EventID, Event_Description and all other fields
+| select_remove(right_EventID, Source)                  // Unselect right_EventID, Source filed
 ;
