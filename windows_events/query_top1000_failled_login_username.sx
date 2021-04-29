@@ -1,0 +1,7 @@
+// top 1000 failed logon usernames.
+@evtx
+| filter(EventID = 4625)
+| select(EventData[TargetUserName], count:count(*))
+| group(@1)
+| sort(@2 DESC)
+| limit(1000)

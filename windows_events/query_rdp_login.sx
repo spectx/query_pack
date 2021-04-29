@@ -1,0 +1,10 @@
+// RemoteInteractive login 
+@evtx
+| select(IpAddress:IPADDR(EventData[IpAddress]),
+		 EventData[TargetUserName],
+		 EventData[LogonProcessName],
+		 *)
+| filter(EventID = 4624 
+		 AND EventData[LogonType] = 10)
+
+

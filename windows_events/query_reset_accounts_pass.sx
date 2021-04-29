@@ -1,0 +1,14 @@
+// An attempt was made to reset an accounts password
+@evtx
+| filter(EventID = 4724)
+| select(TimeCreated,
+		 EventID,
+		 Event_Description,
+		 EventData[TargetUserName],
+		 EventData[TargetDomainName],
+		 EventData[TargetSid],
+		 EventData[SubjectUserName],
+		 EventData[SubjectDomainName],
+		 EventData[SubjectUserSid],
+		 *)
+| sort(TimeCreated DESC)

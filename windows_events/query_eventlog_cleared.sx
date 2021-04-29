@@ -1,0 +1,3 @@
+// Event Log Cleared
+@evtx
+| filter(EventID = 1102)
