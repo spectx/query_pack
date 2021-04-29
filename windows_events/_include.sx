@@ -1,8 +1,8 @@
 $s3='s3://spectx-docs/logs/windows/Security.evtx';
 $localhost= 'file:/C:/Windows/System32/winevt/Logs/Security.evtx';
 @evtx=LIST([
-   $s3,                        // Comment if you don't want to see example data.
-// $localhost,                 // Uncomment if you want to query localhost events.
+   $s3,                        // Comment if you don't wish to query SpectX sample data.
+// $localhost,                 // Uncomment if you wish to query localhost events.
            ]) 
 | EVTX()
 | join(@[./meta/EventID.sx] ON EventID)
