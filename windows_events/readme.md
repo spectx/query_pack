@@ -6,4 +6,6 @@
 4. Add the .zip you downloaded in step 1.
 5. In the resource tree, open the include.sx file in the windows_events folder
 6. In the .include.sx script, modify the file path to point SpectX to your .evtx files.
-7. Open and run other queries in the windows_events folder.
+7. Uncomment (remove slashes) from // $localhost (line 5) and comment (add two slashes in front of) $s3_example (line 4).
+8. Save the include.sx file for the changes to take effect.
+10. Open and run other queries in the windows_events folder.
